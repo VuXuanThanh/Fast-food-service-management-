@@ -22,6 +22,7 @@ public class BLL {
         ArrayList<TaiKhoan> ds = new ArrayList<>();
         String sql ="select * from TAIKHOAN";
         ds = dal.getData(sql);
+        System.out.println("Vũ Xuân thành");
         return ds;
     }
 //    public ArrayList<HangHoa> showHangHoaCach2(){
