@@ -31,7 +31,7 @@ public class CustomTable extends AbstractTableModel
     private Class classes[]={Integer.class,String.class,String.class, Integer.class};
     //Tạo một đối tượng arrayList có tên listThiSinh.
     ArrayList<TaiKhoan> dsThiSinh=new ArrayList<>();
-
+    ArrayList<TaiKhoan> dsThiSinh1=new ArrayList<>();
     //phương thức khởi tạo cho class có tham số truyền vào.
     public CustomTable(ArrayList<TaiKhoan> listPTB2)
    {
