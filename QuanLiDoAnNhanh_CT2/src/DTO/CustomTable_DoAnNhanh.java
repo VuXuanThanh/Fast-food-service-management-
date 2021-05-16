@@ -1,8 +1,7 @@
 package DTO;
 
 
-
-
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 //import PhongThi_ThiSinh.ThiSinh;
@@ -23,17 +22,19 @@ import javax.swing.table.AbstractTableModel;
  * removeTableeModelListener(listener:tablleModelListener):void
  
  */
-public class CustomTable extends AbstractTableModel
+public class CustomTable_DoAnNhanh extends AbstractTableModel
 {
     //Khai báo xâu chứa tiêu đề của bảng.
-    private String name[]={"Mã tài khoản","Tên tài khoản","Mật khẩu","Quyền"};
+    private String name[]={"Mã món","Tên món","Ảnh","Đơn vị tính",
+    "Mã danh mục","Giá"};
     //Khai báo lớp Chứa kiểu dữ liệu của từng trường tương ứng.
-    private Class classes[]={Integer.class,String.class,String.class, Integer.class};
+    private Class classes[]={Integer.class,String.class,String.class,String.class,
+    Integer.class, Double.class};
     //Tạo một đối tượng arrayList có tên listThiSinh.
-    ArrayList<TaiKhoan> dsThiSinh=new ArrayList<>();
-    ArrayList<TaiKhoan> dsThiSinh1=new ArrayList<>();
+    ArrayList<DoAn> dsThiSinh=new ArrayList<>();
+
     //phương thức khởi tạo cho class có tham số truyền vào.
-    public CustomTable(ArrayList<TaiKhoan> listPTB2)
+    public CustomTable_DoAnNhanh(ArrayList<DoAn> listPTB2)
    {
        this.dsThiSinh=listPTB2;
    }
@@ -52,17 +53,21 @@ public class CustomTable extends AbstractTableModel
     //Đưa thông tin của phần tử trong arrayList lên jTable
     public Object getValueAt(int rowIndex,int columnIndex)
     {
+        
         switch(columnIndex)
         {
             //Cột số a
-            case 0: return dsThiSinh.get(rowIndex).getID();
+            case 0: return dsThiSinh.get(rowIndex).getMaMon();
             //Cột b
-            case 1: return dsThiSinh.get(rowIndex).getTenTaiKhoan();
+            case 1: return dsThiSinh.get(rowIndex).getTenMon();
             //cột c
-            case 2: return dsThiSinh.get(rowIndex).getMatKhau();
-            
-             case 3: return dsThiSinh.get(rowIndex).getQuyen();
+            case 2: return dsThiSinh.get(rowIndex).getAnh();
             //cột kq
+            case 3: return dsThiSinh.get(rowIndex).getDonViTinh();
+            
+            case 4: return dsThiSinh.get(rowIndex).getMaDM();
+            
+            case 5: return dsThiSinh.get(rowIndex).getGia();
             
             default :return null;
         }

@@ -12,42 +12,15 @@ import java.util.Objects;
  * @author Vu Xuan Thanh
  */
 public class TaiKhoan {
-    private int ID;
-    private String tenTaiKhoan, matKhau;
-    private int quyen;
-
+    protected String tenTaiKhoan, matKhau;
+    
     public TaiKhoan() {
-    }
-
-    public TaiKhoan(int ID, String tenTaiKhoan, String matKhau, int quyen) {
-        this.ID = ID;
-        this.tenTaiKhoan = tenTaiKhoan;
-        this.matKhau = matKhau;
-        this.quyen = quyen;
     }
 
     public TaiKhoan(String tenTaiKhoan, String matKhau) {
         this.tenTaiKhoan = tenTaiKhoan;
         this.matKhau = matKhau;
     }
-
-    
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public int getQuyen() {
-        return quyen;
-    }
-
-    public void setQuyen(int quyen) {
-        this.quyen = quyen;
-    }
-
     public String getTenTaiKhoan() {
         return tenTaiKhoan;
     }

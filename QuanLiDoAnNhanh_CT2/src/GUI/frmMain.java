@@ -45,7 +45,6 @@ public class frmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         mainMnu = new javax.swing.JMenuBar();
         mnuTrangChu = new javax.swing.JMenu();
         itemDangXuat = new javax.swing.JRadioButtonMenuItem();
@@ -55,38 +54,23 @@ public class frmMain extends javax.swing.JFrame {
         itemQLNguyenLieu = new javax.swing.JRadioButtonMenuItem();
         itemQLDanhMuc = new javax.swing.JRadioButtonMenuItem();
         itemQLTaiKhoan = new javax.swing.JRadioButtonMenuItem();
-        itemQLDoAnNhanh = new javax.swing.JRadioButtonMenuItem();
-        mnuDatDoAn = new javax.swing.JMenu();
         mnuBaoCaoThongKe = new javax.swing.JMenu();
-        mnuTimKiem = new javax.swing.JMenu();
+        mnuDoiMatKhau = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Phần mềm quản lí đồ ăn nhanh");
 
         jPanel1.setForeground(new java.awt.Color(243, 215, 94));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(534, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(302, 302, 302))
+            .addGap(0, 915, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jButton1)
-                .addContainerGap(355, Short.MAX_VALUE))
+            .addGap(0, 518, Short.MAX_VALUE)
         );
 
         mainMnu.setBackground(new java.awt.Color(95, 240, 81));
@@ -97,6 +81,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuTrangChu.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         mnuTrangChu.setMargin(new java.awt.Insets(0, 10, 0, 10));
 
+        itemDangXuat.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         itemDangXuat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         itemDangXuat.setMnemonic('C');
         itemDangXuat.setSelected(true);
@@ -114,52 +99,47 @@ public class frmMain extends javax.swing.JFrame {
         mnuQuanLi.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         mnuQuanLi.setMargin(new java.awt.Insets(0, 10, 0, 10));
 
+        itemQLNhaCungCap.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         itemQLNhaCungCap.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemQLNhaCungCap.setSelected(true);
         itemQLNhaCungCap.setText("Quản lí nhà cung cấp");
         mnuQuanLi.add(itemQLNhaCungCap);
 
+        itemQLNhanVien.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         itemQLNhanVien.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemQLNhanVien.setSelected(true);
         itemQLNhanVien.setText("Quản lí nhân viên");
         mnuQuanLi.add(itemQLNhanVien);
 
+        itemQLNguyenLieu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         itemQLNguyenLieu.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemQLNguyenLieu.setSelected(true);
         itemQLNguyenLieu.setText("Quản lí nguyên liệu");
         mnuQuanLi.add(itemQLNguyenLieu);
 
+        itemQLDanhMuc.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         itemQLDanhMuc.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemQLDanhMuc.setSelected(true);
         itemQLDanhMuc.setText("Quản lí danh mục");
         mnuQuanLi.add(itemQLDanhMuc);
 
+        itemQLTaiKhoan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         itemQLTaiKhoan.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemQLTaiKhoan.setSelected(true);
         itemQLTaiKhoan.setText("Quản lí tài khoản");
         mnuQuanLi.add(itemQLTaiKhoan);
 
-        itemQLDoAnNhanh.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        itemQLDoAnNhanh.setSelected(true);
-        itemQLDoAnNhanh.setText("Quản lí đồ ăn nhanh");
-        mnuQuanLi.add(itemQLDoAnNhanh);
-
         mainMnu.add(mnuQuanLi);
-
-        mnuDatDoAn.setText("Order");
-        mnuDatDoAn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        mnuDatDoAn.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        mainMnu.add(mnuDatDoAn);
 
         mnuBaoCaoThongKe.setText("Báo cáo thống kê");
         mnuBaoCaoThongKe.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         mnuBaoCaoThongKe.setMargin(new java.awt.Insets(0, 10, 0, 10));
         mainMnu.add(mnuBaoCaoThongKe);
 
-        mnuTimKiem.setText("Tìm kiếm");
-        mnuTimKiem.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        mnuTimKiem.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        mainMnu.add(mnuTimKiem);
+        mnuDoiMatKhau.setText("Đổi mật khẩu");
+        mnuDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        mnuDoiMatKhau.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        mainMnu.add(mnuDoiMatKhau);
 
         setJMenuBar(mainMnu);
 
@@ -187,11 +167,6 @@ public class frmMain extends javax.swing.JFrame {
           //  new frmDangNhap().setVisible(true);
         } 
     }//GEN-LAST:event_itemDangXuatActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,18 +206,15 @@ public class frmMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButtonMenuItem itemDangXuat;
     private javax.swing.JRadioButtonMenuItem itemQLDanhMuc;
-    private javax.swing.JRadioButtonMenuItem itemQLDoAnNhanh;
     private javax.swing.JRadioButtonMenuItem itemQLNguyenLieu;
     private javax.swing.JRadioButtonMenuItem itemQLNhaCungCap;
     private javax.swing.JRadioButtonMenuItem itemQLNhanVien;
     private javax.swing.JRadioButtonMenuItem itemQLTaiKhoan;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar mainMnu;
     private javax.swing.JMenu mnuBaoCaoThongKe;
-    private javax.swing.JMenu mnuDatDoAn;
+    private javax.swing.JMenu mnuDoiMatKhau;
     private javax.swing.JMenu mnuQuanLi;
-    private javax.swing.JMenu mnuTimKiem;
     private javax.swing.JMenu mnuTrangChu;
     // End of variables declaration//GEN-END:variables
 }
