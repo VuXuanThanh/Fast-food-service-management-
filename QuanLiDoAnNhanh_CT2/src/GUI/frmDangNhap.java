@@ -10,7 +10,10 @@ import DTO.TaiKhoan;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import BLL.BLL;
-import DTO.TaiKhoanAdmin;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -23,8 +26,7 @@ public class frmDangNhap extends javax.swing.JFrame {
      */
     BLL bll = new BLL();
     ArrayList<TaiKhoan> listTK = new ArrayList<>();
-    ArrayList<TaiKhoanAdmin> listTKAdmin = new ArrayList<TaiKhoanAdmin>();
-    public static String tenTaiKhoan;
+    public static String tenTKDN;
     public static int quyen;
     public frmDangNhap() {
         initComponents();
@@ -36,10 +38,9 @@ public class frmDangNhap extends javax.swing.JFrame {
         
     }
     public void getData(){
-       listTKAdmin = bll.showTaiKhoanAdmin();
+      
         load();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,8 +57,6 @@ public class frmDangNhap extends javax.swing.JFrame {
         txtUserName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
-        cbxQuyen = new javax.swing.JComboBox<>();
         btnLogin = new javax.swing.JButton();
         txtReset = new javax.swing.JButton();
 
@@ -92,11 +91,6 @@ public class frmDangNhap extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Mật khẩu");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Quyền");
-
-        cbxQuyen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "admin", "users" }));
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -105,13 +99,11 @@ public class frmDangNhap extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtUserName)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
-                    .addComponent(cbxQuyen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
@@ -125,11 +117,7 @@ public class frmDangNhap extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbxQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -191,24 +179,30 @@ public class frmDangNhap extends javax.swing.JFrame {
             txtPassword.requestFocus();
             return;
         }
-        if(cbxQuyen.getSelectedItem().equals("admin")){
-            
-            TaiKhoanAdmin tk = new TaiKhoanAdmin(tenTaiKhoan, matKhau);
-            this.tenTaiKhoan = tenTaiKhoan;
-            this.quyen = 1;
-            if (!listTKAdmin.contains(tk)) {
-                JOptionPane.showMessageDialog(null, "Không chứa tên và mật khẩu này trong csdl");
-                return;
-            }
+        try {
+            listTK = bll.showTaiKhoan();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        TaiKhoan tk = new TaiKhoan(tenTaiKhoan, matKhau);
+        if(!listTK.contains(tk)){
+            JOptionPane.showMessageDialog(null, "Vui lòng kiểm tra tên hoặc mật khẩu");
+            return;
+        }
+        TaiKhoan quyen = new TaiKhoan();
+            quyen = listTK.get(listTK.indexOf(tk));
+        tenTKDN = "Xin chào " +quyen.getTenTaiKhoan();
+        
+        if(quyen.getQuyen()==1){
+           
             new frmMain().setVisible(true);
-            txtUserName.setText("");
-            txtPassword.setText("");
+            this.setVisible(false);
         }
         else{
-            TaiKhoan tk = new TaiKhoan(tenTaiKhoan,matKhau);
-            JOptionPane.showMessageDialog(null, "Hiển thị màn hình cho nhân viên");
-        }
-        
+            
+              new frmMainNhanVien().setVisible(true);
+        }      
+        this.setVisible(false);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResetActionPerformed
@@ -253,11 +247,9 @@ public class frmDangNhap extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JComboBox<String> cbxQuyen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField txtPassword;

@@ -5,6 +5,12 @@
  */
 package GUI;
 
+import java.awt.Font;
+import java.awt.event.KeyEvent;
+import javax.swing.Box;
+import javax.swing.JMenu;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Vu Xuan Thanh
@@ -17,6 +23,16 @@ public class frmMainNhanVien extends javax.swing.JFrame {
     public frmMainNhanVien() {
         initComponents();
         setExtendedState(this.MAXIMIZED_BOTH);
+         mainMnu.add(Box.createHorizontalGlue());
+        JMenu tenTaiKhoanMenu = new JMenu(frmDangNhap.tenTKDN);
+        tenTaiKhoanMenu.setMnemonic(KeyEvent.VK_S);
+//        Font font = new Font(name,style, size);
+        Font font = new Font(mnuDoiMatKhau.getFont().getName(),
+                mnuDoiMatKhau.getFont().getStyle(),25);
+        
+        tenTaiKhoanMenu.setFont(font);
+        mainMnu.add(tenTaiKhoanMenu);
+       // itemDangXuat.setMnemonic(KeyEvent.VK_X);
     }
 
     /**
@@ -28,7 +44,7 @@ public class frmMainNhanVien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
+        mainMnu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuItemDangXuat = new javax.swing.JCheckBoxMenuItem();
         mnuQLDoAnNhanh = new javax.swing.JMenu();
@@ -36,6 +52,7 @@ public class frmMainNhanVien extends javax.swing.JFrame {
         mnuDoiMatKhau = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Phần mềm quản lí đồ ăn nhanh");
 
         jMenu1.setText("Trang chủ");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -44,9 +61,14 @@ public class frmMainNhanVien extends javax.swing.JFrame {
         mnuItemDangXuat.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         mnuItemDangXuat.setSelected(true);
         mnuItemDangXuat.setText("Đăng xuất");
+        mnuItemDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuItemDangXuatActionPerformed(evt);
+            }
+        });
         jMenu1.add(mnuItemDangXuat);
 
-        jMenuBar1.add(jMenu1);
+        mainMnu.add(jMenu1);
 
         mnuQLDoAnNhanh.setText("Quản lí đồ ăn nhanh");
         mnuQLDoAnNhanh.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -56,19 +78,19 @@ public class frmMainNhanVien extends javax.swing.JFrame {
                 mnuQLDoAnNhanhMouseClicked(evt);
             }
         });
-        jMenuBar1.add(mnuQLDoAnNhanh);
+        mainMnu.add(mnuQLDoAnNhanh);
 
         mnuOrderDoAn.setText("Order đồ ăn");
         mnuOrderDoAn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         mnuOrderDoAn.setMargin(new java.awt.Insets(5, 5, 5, 10));
-        jMenuBar1.add(mnuOrderDoAn);
+        mainMnu.add(mnuOrderDoAn);
 
         mnuDoiMatKhau.setText("Đổi mật khẩu");
         mnuDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         mnuDoiMatKhau.setMargin(new java.awt.Insets(5, 5, 5, 10));
-        jMenuBar1.add(mnuDoiMatKhau);
+        mainMnu.add(mnuDoiMatKhau);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(mainMnu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,8 +108,17 @@ public class frmMainNhanVien extends javax.swing.JFrame {
 
     private void mnuQLDoAnNhanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuQLDoAnNhanhMouseClicked
         // TODO add your handling code here:
-        new frmQLDoAnNhanh().setVisible(true);
+        new frmQLThucDon().setVisible(true);
     }//GEN-LAST:event_mnuQLDoAnNhanhMouseClicked
+
+    private void mnuItemDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemDangXuatActionPerformed
+        // TODO add your handling code here:
+        int n = JOptionPane.showConfirmDialog(null, "Xác nhận đăng xuất?","Are you sure?",JOptionPane.YES_NO_OPTION);
+        if(n==0){
+            this.setVisible(false);
+           new frmDangNhap().setVisible(true);
+        } 
+    }//GEN-LAST:event_mnuItemDangXuatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,7 +157,7 @@ public class frmMainNhanVien extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar mainMnu;
     private javax.swing.JMenu mnuDoiMatKhau;
     private javax.swing.JCheckBoxMenuItem mnuItemDangXuat;
     private javax.swing.JMenu mnuOrderDoAn;

@@ -25,11 +25,12 @@ public class frmMain extends javax.swing.JFrame {
         initComponents();
         setExtendedState(this.MAXIMIZED_BOTH);
         mainMnu.add(Box.createHorizontalGlue());
-        JMenu tenTaiKhoanMenu = new JMenu(frmDangNhap.tenTaiKhoan);
+        JMenu tenTaiKhoanMenu = new JMenu(frmDangNhap.tenTKDN);
         tenTaiKhoanMenu.setMnemonic(KeyEvent.VK_S);
 //        Font font = new Font(name,style, size);
         Font font = new Font(mnuQuanLi.getFont().getName(),
-                mnuQuanLi.getFont().getStyle(),20);
+                mnuQuanLi.getFont().getStyle(),25);
+        
         tenTaiKhoanMenu.setFont(font);
         mainMnu.add(tenTaiKhoanMenu);
         itemDangXuat.setMnemonic(KeyEvent.VK_X);
@@ -55,6 +56,7 @@ public class frmMain extends javax.swing.JFrame {
         itemQLDanhMuc = new javax.swing.JRadioButtonMenuItem();
         itemQLTaiKhoan = new javax.swing.JRadioButtonMenuItem();
         mnuBaoCaoThongKe = new javax.swing.JMenu();
+        mnuItemBaoCaoHD = new javax.swing.JMenuItem();
         mnuDoiMatKhau = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,7 +84,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuTrangChu.setMargin(new java.awt.Insets(0, 10, 0, 10));
 
         itemDangXuat.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        itemDangXuat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        itemDangXuat.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemDangXuat.setMnemonic('C');
         itemDangXuat.setSelected(true);
         itemDangXuat.setText("Đăng xuất");
@@ -134,6 +136,12 @@ public class frmMain extends javax.swing.JFrame {
         mnuBaoCaoThongKe.setText("Báo cáo thống kê");
         mnuBaoCaoThongKe.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         mnuBaoCaoThongKe.setMargin(new java.awt.Insets(0, 10, 0, 10));
+
+        mnuItemBaoCaoHD.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        mnuItemBaoCaoHD.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        mnuItemBaoCaoHD.setText("Báo cáo hóa đơn");
+        mnuBaoCaoThongKe.add(mnuItemBaoCaoHD);
+
         mainMnu.add(mnuBaoCaoThongKe);
 
         mnuDoiMatKhau.setText("Đổi mật khẩu");
@@ -161,10 +169,10 @@ public class frmMain extends javax.swing.JFrame {
 
     private void itemDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDangXuatActionPerformed
         // TODO add your handling code here:
-        int n = JOptionPane.showConfirmDialog(null, "Xác nhận đăng xuất?","Are you sure?",JOptionPane.YES_NO_OPTION);
+           int n = JOptionPane.showConfirmDialog(null, "Xác nhận đăng xuất?","Are you sure?",JOptionPane.YES_NO_OPTION);
         if(n==0){
-            this.setVisible(false);
-          //  new frmDangNhap().setVisible(true);
+           this.setVisible(false);
+           new frmDangNhap().setVisible(true);
         } 
     }//GEN-LAST:event_itemDangXuatActionPerformed
 
@@ -214,6 +222,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar mainMnu;
     private javax.swing.JMenu mnuBaoCaoThongKe;
     private javax.swing.JMenu mnuDoiMatKhau;
+    private javax.swing.JMenuItem mnuItemBaoCaoHD;
     private javax.swing.JMenu mnuQuanLi;
     private javax.swing.JMenu mnuTrangChu;
     // End of variables declaration//GEN-END:variables

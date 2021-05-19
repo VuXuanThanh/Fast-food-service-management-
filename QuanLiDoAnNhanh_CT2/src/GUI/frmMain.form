@@ -32,7 +32,7 @@
                   <KeyStroke key="Alt+F4"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="18" style="0"/>
+                  <Font name="Arial" size="18" style="2"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="67"/>
                 <Property name="selected" type="boolean" value="true"/>
@@ -127,6 +127,19 @@
               <Insets value="[0, 10, 0, 10]"/>
             </Property>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuItemBaoCaoHD">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Ctrl+H"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="18" style="2"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="B&#xe1;o c&#xe1;o h&#xf3;a &#x111;&#x1a1;n"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuDoiMatKhau">
           <Properties>

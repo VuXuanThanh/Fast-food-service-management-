@@ -2,7 +2,6 @@ package DAL;
 
 
 import DTO.TaiKhoan;
-import DTO.TaiKhoanAdmin;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -93,22 +92,6 @@ public class DAL {
 //        kq=st.executeQuery("select * from HCN");
 //        return kq;
 //    }
-    public ArrayList getDataTKAdmin(String sql) {
-        ArrayList<TaiKhoanAdmin> ds = new ArrayList<>();
-        try {
-            sta = getStatement();
-            res = executeQuery(sql);
-
-            while (res.next()) {
-                TaiKhoanAdmin sv = new TaiKhoanAdmin(res.getString(1), res.getString(2));
-                ds.add(sv);
-            }
-
-        } catch (Exception ex) {
-            System.out.println("loi getData " + ex.toString());
-            return null;
-        }
-        return ds;
-    }
+   
 
 }
