@@ -207,7 +207,7 @@ public class frmDangNhap extends javax.swing.JFrame {
 
     private void txtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResetActionPerformed
         // TODO add your handling code here:
-       
+       System.exit(0);
     }//GEN-LAST:event_txtResetActionPerformed
 
     /**

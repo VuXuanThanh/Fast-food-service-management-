@@ -9,6 +9,7 @@ import java.awt.ComponentOrientation;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import javax.swing.Box;
+import javax.swing.JDialog;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
@@ -55,9 +56,9 @@ public class frmMain extends javax.swing.JFrame {
         itemQLNguyenLieu = new javax.swing.JRadioButtonMenuItem();
         itemQLDanhMuc = new javax.swing.JRadioButtonMenuItem();
         itemQLTaiKhoan = new javax.swing.JRadioButtonMenuItem();
+        mnuNhapKhoNguyenLieu = new javax.swing.JMenu();
         mnuBaoCaoThongKe = new javax.swing.JMenu();
         mnuItemBaoCaoHD = new javax.swing.JMenuItem();
-        mnuDoiMatKhau = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Phần mềm quản lí đồ ăn nhanh");
@@ -133,9 +134,23 @@ public class frmMain extends javax.swing.JFrame {
 
         mainMnu.add(mnuQuanLi);
 
+        mnuNhapKhoNguyenLieu.setText("Nhập kho nguyên liệu");
+        mnuNhapKhoNguyenLieu.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        mnuNhapKhoNguyenLieu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuNhapKhoNguyenLieuMouseClicked(evt);
+            }
+        });
+        mainMnu.add(mnuNhapKhoNguyenLieu);
+
         mnuBaoCaoThongKe.setText("Báo cáo thống kê");
         mnuBaoCaoThongKe.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         mnuBaoCaoThongKe.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        mnuBaoCaoThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuBaoCaoThongKeMouseClicked(evt);
+            }
+        });
 
         mnuItemBaoCaoHD.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuItemBaoCaoHD.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
@@ -143,11 +158,6 @@ public class frmMain extends javax.swing.JFrame {
         mnuBaoCaoThongKe.add(mnuItemBaoCaoHD);
 
         mainMnu.add(mnuBaoCaoThongKe);
-
-        mnuDoiMatKhau.setText("Đổi mật khẩu");
-        mnuDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        mnuDoiMatKhau.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        mainMnu.add(mnuDoiMatKhau);
 
         setJMenuBar(mainMnu);
 
@@ -175,6 +185,16 @@ public class frmMain extends javax.swing.JFrame {
            new frmDangNhap().setVisible(true);
         } 
     }//GEN-LAST:event_itemDangXuatActionPerformed
+
+    private void mnuNhapKhoNguyenLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuNhapKhoNguyenLieuMouseClicked
+        // TODO add your handling code here:
+        new DlgQLPhieuNhap(this, true).setVisible(true);
+    }//GEN-LAST:event_mnuNhapKhoNguyenLieuMouseClicked
+
+    private void mnuBaoCaoThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuBaoCaoThongKeMouseClicked
+        // TODO add your handling code here:
+        new JDialog(this).setVisible(true);
+    }//GEN-LAST:event_mnuBaoCaoThongKeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,8 +241,8 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar mainMnu;
     private javax.swing.JMenu mnuBaoCaoThongKe;
-    private javax.swing.JMenu mnuDoiMatKhau;
     private javax.swing.JMenuItem mnuItemBaoCaoHD;
+    private javax.swing.JMenu mnuNhapKhoNguyenLieu;
     private javax.swing.JMenu mnuQuanLi;
     private javax.swing.JMenu mnuTrangChu;
     // End of variables declaration//GEN-END:variables

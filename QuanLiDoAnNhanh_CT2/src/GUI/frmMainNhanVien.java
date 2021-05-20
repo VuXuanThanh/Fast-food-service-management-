@@ -47,7 +47,7 @@ public class frmMainNhanVien extends javax.swing.JFrame {
         mainMnu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuItemDangXuat = new javax.swing.JCheckBoxMenuItem();
-        mnuQLDoAnNhanh = new javax.swing.JMenu();
+        mnuQLThucDon = new javax.swing.JMenu();
         mnuOrderDoAn = new javax.swing.JMenu();
         mnuDoiMatKhau = new javax.swing.JMenu();
 
@@ -70,15 +70,15 @@ public class frmMainNhanVien extends javax.swing.JFrame {
 
         mainMnu.add(jMenu1);
 
-        mnuQLDoAnNhanh.setText("Quản lí đồ ăn nhanh");
-        mnuQLDoAnNhanh.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        mnuQLDoAnNhanh.setMargin(new java.awt.Insets(5, 5, 5, 10));
-        mnuQLDoAnNhanh.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnuQLThucDon.setText("Quản lí thực đơn");
+        mnuQLThucDon.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        mnuQLThucDon.setMargin(new java.awt.Insets(5, 5, 5, 10));
+        mnuQLThucDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnuQLDoAnNhanhMouseClicked(evt);
+                mnuQLThucDonMouseClicked(evt);
             }
         });
-        mainMnu.add(mnuQLDoAnNhanh);
+        mainMnu.add(mnuQLThucDon);
 
         mnuOrderDoAn.setText("Order đồ ăn");
         mnuOrderDoAn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -106,16 +106,18 @@ public class frmMainNhanVien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuQLDoAnNhanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuQLDoAnNhanhMouseClicked
+    private void mnuQLThucDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuQLThucDonMouseClicked
         // TODO add your handling code here:
-        new frmQLThucDon().setVisible(true);
-    }//GEN-LAST:event_mnuQLDoAnNhanhMouseClicked
+     //   new dlgQLThucDon(this).setVisible(true);
+     new dlgQLThucDon(this, true).setVisible(true);
+       
+    }//GEN-LAST:event_mnuQLThucDonMouseClicked
 
     private void mnuItemDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemDangXuatActionPerformed
         // TODO add your handling code here:
         int n = JOptionPane.showConfirmDialog(null, "Xác nhận đăng xuất?","Are you sure?",JOptionPane.YES_NO_OPTION);
         if(n==0){
-            this.setVisible(false);
+           this.setVisible(false);
            new frmDangNhap().setVisible(true);
         } 
     }//GEN-LAST:event_mnuItemDangXuatActionPerformed
@@ -161,6 +163,6 @@ public class frmMainNhanVien extends javax.swing.JFrame {
     private javax.swing.JMenu mnuDoiMatKhau;
     private javax.swing.JCheckBoxMenuItem mnuItemDangXuat;
     private javax.swing.JMenu mnuOrderDoAn;
-    private javax.swing.JMenu mnuQLDoAnNhanh;
+    private javax.swing.JMenu mnuQLThucDon;
     // End of variables declaration//GEN-END:variables
 }
