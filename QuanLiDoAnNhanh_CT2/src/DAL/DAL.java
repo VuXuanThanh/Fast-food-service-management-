@@ -92,23 +92,6 @@ public class DAL {
 //        kq=st.executeQuery("select * from HCN");
 //        return kq;
 //    }
-    public ArrayList getData(String sql) {
-        ArrayList<TaiKhoan> ds = new ArrayList<>();
-        try {
-            sta = getStatement();
-            res = executeQuery(sql);
-
-            while (res.next()) {
-                TaiKhoan sv = new TaiKhoan(res.getInt(1),
-                       res.getString(2), res.getString(3), res.getInt(4));
-                ds.add(sv);
-            }
-
-        } catch (Exception ex) {
-            System.out.println("loi getData " + ex.toString());
-            return null;
-        }
-        return ds;
-    }
+   
 
 }
