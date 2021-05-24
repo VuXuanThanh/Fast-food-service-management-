@@ -6,13 +6,18 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DAL.DAL;
+import DTO.ChiTietHoaDon;
 import DTO.ChiTietPhieuNhap;
 import DTO.DanhMuc;
 import DTO.DoAn;
+import DTO.HoaDon;
 import DTO.NguyenLieu;
 import DTO.PhieuNhap;
 import DTO.TaiKhoan;
 import java.util.Date;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -161,6 +166,7 @@ public class BLL {
         t = dal.getStatement().executeUpdate(sql);
         return t;
     }
+
     public ArrayList<ChiTietPhieuNhap> showChiTietPhieuNhap() throws Exception {
         ArrayList<ChiTietPhieuNhap> list = new ArrayList<>();
         String sql = "select * from chitietphieunhap";
@@ -172,24 +178,58 @@ public class BLL {
         }
         return list;
     }
-    public int insertChiTietPhieuNhap(String soPhieu, String maNL, int soLNhap, double dGNhap) throws Exception{
+
+    public int insertChiTietPhieuNhap(String soPhieu, String maNL, int soLNhap, double dGNhap) throws Exception {
         int t = 0;
-        String sql ="insert into chitietphieunhap values ('"+soPhieu+"', '"+maNL+"', "+soLNhap+", "+dGNhap+")";
+        String sql = "insert into chitietphieunhap values ('" + soPhieu + "', '" + maNL + "', " + soLNhap + ", " + dGNhap + ")";
         t = dal.getStatement().executeUpdate(sql);
         return t;
     }
-    public int deleteChiTietPhieuNhap(String soPhieu, String maNL) throws Exception{
-        int t =0;
-        String sql ="delete from chitietphieunhap where sophieu = '"+soPhieu+"' and manl ='"+maNL+"'";
+
+    public int deleteChiTietPhieuNhap(String soPhieu, String maNL) throws Exception {
+        int t = 0;
+        String sql = "delete from chitietphieunhap where sophieu = '" + soPhieu + "' and manl ='" + maNL + "'";
         t = dal.getStatement().executeUpdate(sql);
         return t;
     }
-    public ArrayList<PhieuNhap> showPhieuNhapTheoMaNCC(int maNCC) throws SQLException{
+
+    public ArrayList<PhieuNhap> showPhieuNhapTheoMaNCC(int maNCC) throws SQLException {
         ArrayList<PhieuNhap> list = new ArrayList<>();
-        String sql ="select * from phieunhap where mancc ="+maNCC+"";
+        String sql = "select * from phieunhap where mancc =" + maNCC + "";
+        ResultSet res = dal.getResultSet(sql);
+        while (res.next()) {
+            PhieuNhap pn = new PhieuNhap(res.getString(1), res.getDate(2), res.getInt(3));
+            list.add(pn);
+        }
+        return list;
+    }
+
+    // các phương thức cho form báo cáo thống kê
+    public ArrayList<HoaDon> showDSCTHoaDon(String ngayBatDau, String ngayKetThuc) throws SQLException
+    { 
+        ArrayList<HoaDon> list = new ArrayList<>();
+        String sql = "select hoadon.mahd, ngayxuat, sum(soluong*gia) as tongtien "
+                + " from hoadon inner join chitiethoadon "
+                + "on hoadon.MAHD = CHITIETHOADON.MAHD "
+                + "where ngayxuat >= date('" + ngayBatDau + "') and ngayxuat <= date('" + ngayKetThuc + "') "
+                + "group by hoadon.mahd, ngayxuat";
         ResultSet res = dal.getResultSet(sql);
         while(res.next()){
-            PhieuNhap pn = new PhieuNhap(res.getString(1), res.getDate(2), res.getInt(3));
+            HoaDon hoaDon = new HoaDon(res.getString(1), res.getDate(2), res.getDouble(3));
+            list.add(hoaDon);
+        }
+        return list;
+    }
+    public ArrayList<PhieuNhap> showDSCTPhieuNhap(String ngayBatDau, String ngayKetThuc) throws SQLException{
+        ArrayList<PhieuNhap> list = new ArrayList<>();
+        String sql ="select phieunhap.sophieu, ngaynhap, sum(slnhap*dgnhap) as tongtien "
+                + "from phieunhap inner join chitietphieunhap "
+                + "on phieunhap.SOPHIEU = chitietphieunhap.sophieu "
+                + "where ngaynhap >= date('"+ngayBatDau+"') and ngaynhap <='"+ngayKetThuc+"' "
+                + "group by phieunhap.SOPHIEU, ngaynhap";
+        ResultSet res = dal.getResultSet(sql);
+        while(res.next()){
+            PhieuNhap pn = new PhieuNhap(res.getString(1), res.getDate(2), res.getDouble(3));
             list.add(pn);
         }
         return list;

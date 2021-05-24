@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+
 import BLL.BLL;
 import DTO.CustomTable_DoAnNhanh;
 import DTO.DanhMuc;
@@ -38,14 +39,15 @@ public class dlgQLThucDon extends javax.swing.JDialog {
     public dlgQLThucDon(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         try {
-        loadTable();
-        resetText();
-        loadCombobox();
-         }catch(SQLException ex){
-              JOptionPane.showMessageDialog(null, "Lỗi kết nối đến db");
-         }
+        try {
+            loadTable();
+            resetText();
+            loadCombobox();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL "+ex.getMessage());
+        }
     }
+
     public void loadTable() throws SQLException {
         list = bll.showDoAn();
         tblDoAnNhanh.setModel(new CustomTable_DoAnNhanh(list));
@@ -420,23 +422,22 @@ public class dlgQLThucDon extends javax.swing.JDialog {
 
     private void tblDoAnNhanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoAnNhanhMouseClicked
         // TODO add your handling code here:
-        try{
+        try {
             int row = tblDoAnNhanh.getSelectedRow();
             DoAn doAn = new DoAn();
             doAn = list.get(row);
-            txtMaMon.setText(doAn.getMaMon()+"");
+            txtMaMon.setText(doAn.getMaMon() + "");
             txtTenMon.setText(doAn.getTenMon());
             txtDVTinh.setText(doAn.getDonViTinh());
-            txtGia.setText(doAn.getGia()+"");
+            txtGia.setText(doAn.getGia() + "");
             txtAnh.setText(doAn.getAnh());
             cbxDanhMuc.removeAllItems();
             cbxDanhMuc.addItem(bll.showTenDanhMuc2(doAn.getMaDM()));
 
             File f = new File(doAn.getAnh());
             lblAnh.setIcon(new ImageIcon(f.getAbsolutePath()));
-        }
-        catch(IndexOutOfBoundsException ex){
-            JOptionPane.showMessageDialog(null,"Lỗi index: "+ ex.getMessage());
+        } catch (IndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Lỗi index: " + ex.getMessage());
         } catch (SQLException ex) {
             Logger.getLogger(dlgQLThucDon.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -444,19 +445,14 @@ public class dlgQLThucDon extends javax.swing.JDialog {
 
     private void btnNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapActionPerformed
         // TODO add your handling code here:
-        resetText();
-        try {
-            loadCombobox();
-            txtTenMon.requestFocus();
-        } catch (SQLException ex) {
-            Logger.getLogger(dlgQLThucDon.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        resetText(); 
+         txtTenMon.requestFocus();
+       
     }//GEN-LAST:event_btnNhapActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         try {
             // TODO add your handling code here:
-
             String tenMon = txtTenMon.getText();
             String anh = txtAnh.getText();
             String donViTinh = txtDVTinh.getText();
@@ -477,7 +473,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi kết nối truy vấn SQL "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Lỗi kết nối truy vấn SQL " + ex.getMessage());
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Trường giá phải là số");
         } catch (ArithmeticException ex) {
@@ -501,9 +497,9 @@ public class dlgQLThucDon extends javax.swing.JDialog {
             loadTable();
             resetText();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi kết nối đến db");
+            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL "+ex.getMessage());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Lỗi " + ex.getMessage());
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -531,16 +527,16 @@ public class dlgQLThucDon extends javax.swing.JDialog {
             bll.updateDoAnNhanh(maMon, tenMon, anh, donViTinh, maDM, gia);
             loadTable();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi kết nối đến db "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Lỗi kết nối đến db " + ex.getMessage());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi kết nối đến db "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Lỗi kết nối đến db " + ex.getMessage());
         }
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapXepActionPerformed
         // TODO add your handling code here:
-        Collections.sort(list, new Comparator<DoAn>(){
+        Collections.sort(list, new Comparator<DoAn>() {
             @Override
             public int compare(DoAn o1, DoAn o2) {
                 return o1.getTenMon().compareTo(o2.getTenMon());
@@ -553,7 +549,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-       
+        
     }//GEN-LAST:event_btnThoatActionPerformed
 
     /**

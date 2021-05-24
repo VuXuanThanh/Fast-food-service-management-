@@ -15,7 +15,8 @@ public class PhieuNhap {
     private String soPhieu;
     private Date ngayNhap;
     private int maNCC;
-
+    private double tongTien;
+    
     public PhieuNhap() {
     }
 
@@ -25,6 +26,13 @@ public class PhieuNhap {
         this.maNCC = maNCC;
     }
 
+    public PhieuNhap(String soPhieu, Date ngayNhap, double tongTien) {
+        this.soPhieu = soPhieu;
+        this.ngayNhap = ngayNhap;
+        this.tongTien = tongTien;
+    }
+
+    
     public String getSoPhieu() {
         return soPhieu;
     }
@@ -47,6 +55,14 @@ public class PhieuNhap {
 
     public void setMaNCC(int maNCC) {
         this.maNCC = maNCC;
+    }
+
+    public double getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(double tongTien) {
+        this.tongTien = tongTien;
     }
     
     
