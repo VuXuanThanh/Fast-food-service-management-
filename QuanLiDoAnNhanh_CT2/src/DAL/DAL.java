@@ -22,6 +22,7 @@ import java.util.logging.Logger;
  */
 public class DAL {
 
+    // push code từ branch VuXuanThanh
     Connection con = null;
     Statement sta = null;
     ResultSet res = null;
