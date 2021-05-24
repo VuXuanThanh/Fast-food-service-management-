@@ -58,7 +58,6 @@ public class frmMain extends javax.swing.JFrame {
         itemQLTaiKhoan = new javax.swing.JRadioButtonMenuItem();
         mnuNhapKhoNguyenLieu = new javax.swing.JMenu();
         mnuBaoCaoThongKe = new javax.swing.JMenu();
-        mnuItemBaoCaoHD = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Phần mềm quản lí đồ ăn nhanh");
@@ -151,12 +150,6 @@ public class frmMain extends javax.swing.JFrame {
                 mnuBaoCaoThongKeMouseClicked(evt);
             }
         });
-
-        mnuItemBaoCaoHD.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        mnuItemBaoCaoHD.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        mnuItemBaoCaoHD.setText("Báo cáo hóa đơn");
-        mnuBaoCaoThongKe.add(mnuItemBaoCaoHD);
-
         mainMnu.add(mnuBaoCaoThongKe);
 
         setJMenuBar(mainMnu);
@@ -193,7 +186,7 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuBaoCaoThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuBaoCaoThongKeMouseClicked
         // TODO add your handling code here:
-        new JDialog(this).setVisible(true);
+        new dlg_BaoCaoThongKe(this, true).setVisible(true);
     }//GEN-LAST:event_mnuBaoCaoThongKeMouseClicked
 
     /**
@@ -241,7 +234,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar mainMnu;
     private javax.swing.JMenu mnuBaoCaoThongKe;
-    private javax.swing.JMenuItem mnuItemBaoCaoHD;
     private javax.swing.JMenu mnuNhapKhoNguyenLieu;
     private javax.swing.JMenu mnuQuanLi;
     private javax.swing.JMenu mnuTrangChu;

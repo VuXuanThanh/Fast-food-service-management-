@@ -21,9 +21,12 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,14 +39,13 @@ import javax.swing.JOptionPane;
  */
 public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
 
-    /**
-     * Creates new form dlg_BaoCaoThongKe
-     */
     BLL bll = new BLL();
     ArrayList<HoaDon> list = new ArrayList<>();
     ArrayList<PhieuNhap> listPN = new ArrayList<>();
-    double sumHD = 0;
-    double sumPN = 0;
+    Date date = new Date();
+    LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    int month = localDate.getMonthValue();
+    int year = localDate.getYear();
 
     public dlg_BaoCaoThongKe(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -55,33 +57,97 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
         LocalDateTime now = LocalDateTime.now();
         txtNgayBatDau.setText(dtf.format(now));
         txtNgayKetThuc.setText(dtf.format(now));
-        thongKeHoaDonTheoNgay(dtf.format(now), dtf.format(now));
-        thongKePhieuNhapTheoNgay(dtf.format(now), dtf.format(now));
+        thongKeHoaDon(dtf.format(now), dtf.format(now));
+        thongKePhieuNhap(dtf.format(now), dtf.format(now));
     }
 
-    public void thongKeHoaDonTheoNgay(String ngayBatDau, String ngayKetThuc) {
+    public double thongKeHoaDon(String ngayBatDau, String ngayKetThuc) {
         try {
             list = bll.showDSCTHoaDon(ngayBatDau, ngayKetThuc);
             tblDSHoaDon.setModel(new CustomTable_HoaDonBaoCaoTK(list));
-
+            double sumHD = 0;
             for (HoaDon hoaDon : list) {
                 sumHD += hoaDon.getTongTien();
             }
+            return sumHD;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL" + ex.getMessage());
+            return 0;
         }
     }
 
-    public void thongKePhieuNhapTheoNgay(String ngayBatDau, String ngayKetThuc) {
+    public double thongKePhieuNhap(String ngayBatDau, String ngayKetThuc) {
         try {
+            double sumPN = 0;
             listPN = bll.showDSCTPhieuNhap(ngayBatDau, ngayKetThuc);
             tblChiPhiMuaNguyenLieu.setModel(new CustomTable_PhieuNhapBaoCaoTK(listPN));
-            double sum = 0;
             for (PhieuNhap phieuNhap : listPN) {
                 sumPN += phieuNhap.getTongTien();
             }
+            return sumPN;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL" + ex.getMessage());
+            return 0;
+        }
+    }
+
+    public double thongKeHoaDon(int thangHT) {
+        try {
+            list = bll.showDSCTHoaDon(thangHT);
+            tblDSHoaDon.setModel(new CustomTable_HoaDonBaoCaoTK(list));
+            double sumHD = 0;
+            for (HoaDon hoaDon : list) {
+                sumHD += hoaDon.getTongTien();
+            }
+            return sumHD;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL" + ex.getMessage());
+            return 0;
+        }
+    }
+
+    public double thongKePhieuNhap(int thangHT) {
+        try {
+            double sumPN = 0;
+            listPN = bll.showDSCTPhieuNhap(thangHT);
+            tblChiPhiMuaNguyenLieu.setModel(new CustomTable_PhieuNhapBaoCaoTK(listPN));
+            for (PhieuNhap phieuNhap : listPN) {
+                sumPN += phieuNhap.getTongTien();
+            }
+            return sumPN;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL" + ex.getMessage());
+            return 0;
+        }
+    }
+
+    public double thongKeHoaDon(int namHT, boolean flag) {
+        try {
+            list = bll.showDSCTHoaDon(namHT, flag);
+            tblDSHoaDon.setModel(new CustomTable_HoaDonBaoCaoTK(list));
+            double sumHD = 0;
+            for (HoaDon hoaDon : list) {
+                sumHD += hoaDon.getTongTien();
+            }
+            return sumHD;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL" + ex.getMessage());
+            return 0;
+        }
+    }
+
+    public double thongKePhieuNhap(int namHT, boolean flag) {
+        try {
+            double sumPN = 0;
+            listPN = bll.showDSCTPhieuNhap(namHT, flag);
+            tblChiPhiMuaNguyenLieu.setModel(new CustomTable_PhieuNhapBaoCaoTK(listPN));
+            for (PhieuNhap phieuNhap : listPN) {
+                sumPN += phieuNhap.getTongTien();
+            }
+            return sumPN;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL" + ex.getMessage());
+            return 0;
         }
     }
 
@@ -138,6 +204,7 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Báo cáo thống kê");
 
         jLabel2.setText("Loại thời gian: ");
 
@@ -311,8 +378,8 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -353,6 +420,20 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
 
     private void btnInBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInBaoCaoActionPerformed
         // TODO add your handling code here:
+        double sumHD = 0;
+        double sumPN = 0;
+        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo tháng")) {
+            sumHD = thongKeHoaDon(month);
+            sumPN = thongKePhieuNhap(month);
+        }
+        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo ngày")) {
+            sumHD = thongKeHoaDon(txtNgayBatDau.getText(), txtNgayKetThuc.getText());
+            sumPN = thongKePhieuNhap(txtNgayBatDau.getText(), txtNgayKetThuc.getText());
+        }
+        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo năm")) {
+            sumHD = thongKeHoaDon(year, true);
+            sumPN = thongKePhieuNhap(year, true);
+        }
         String path = "";
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -363,7 +444,8 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
             try {
                 PdfWriter.getInstance(document, new FileOutputStream(path + "_baocao_cangtinso2.pdf"));
                 document.open();
-                Paragraph para = new Paragraph("                         BAO CAO DOANH THU CANG TIN SO 2");
+                Paragraph para = new Paragraph("                        BAO CAO DOANH THU CANG TIN SO 2 "
+                        + cbxLoaiThoiGian.getSelectedItem().toString());
                 para.spacingBefore();
                 document.add(para);
                 for (int i = 0; i < 4; i++) {
@@ -394,10 +476,12 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
                 document.add(new Paragraph("  "));
                 document.add(new Paragraph("  "));
                 document.add(new Paragraph("Danh sach chi tiet phieu nhap"));
+                document.add(new Paragraph("  "));
+                document.add(new Paragraph("  "));
                 tblNL.addCell("Ma phieu nhap");
                 tblNL.addCell("Ngay nhap");
                 tblNL.addCell("Tong tien");
-                 for (PhieuNhap pn : listPN) {
+                for (PhieuNhap pn : listPN) {
                     String maHD = pn.getSoPhieu();
                     Date ngayNhap = pn.getNgayNhap();
                     double tongTien = pn.getTongTien();
@@ -407,31 +491,42 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
                     tblNL.addCell(tongTien + "");
 
                 }
-                document.add(tbl);
+                document.add(tblNL);
+
                 document.add(new Paragraph("                                   "
                         + "                               Tong chi = " + sumPN));
-                 if(sumHD>=sumPN){
-                      document.add(new Paragraph("                                   "
-                        + "                               Lai = " + (sumHD-sumPN)));
-                 }
-                 else{
-                       document.add(new Paragraph("                                   "
-                        + "                               Lo = " + (sumPN-sumHD)));
-                 }
-                     
+                if (sumHD >= sumPN) {
+                    document.add(new Paragraph("                                   "
+                            + "                               Lai = " + (sumHD - sumPN)));
+                } else {
+                    document.add(new Paragraph("                                   "
+                            + "                               Lo = " + (sumPN - sumHD)));
+                }
+
                 JOptionPane.showMessageDialog(null, "Tạo thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(DlgBaoCaoThongKe.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Lỗi ko tìm thấy file", "Thông báo", JOptionPane.ERROR_MESSAGE);
             } catch (DocumentException ex) {
-                Logger.getLogger(DlgBaoCaoThongKe.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Lỗi " + ex.getMessage(), "Thông báo", JOptionPane.ERROR_MESSAGE);
             }
 
             document.close();
+
         }
     }//GEN-LAST:event_btnInBaoCaoActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
+        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo tháng")) {
+            thongKeHoaDon(month);
+            thongKePhieuNhap(month);
+            return;
+        }
+        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo năm")) {
+            thongKeHoaDon(year, true);
+            thongKePhieuNhap(year, true);
+            return;
+        }
         try {
             String format = "yyyy-MM-dd";
             SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -448,8 +543,8 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String strDate = dateFormat.format(date);
             String strDate1 = dateFormat.format(date2);
-            thongKeHoaDonTheoNgay(strDate, strDate1);
-            thongKePhieuNhapTheoNgay(strDate, strDate1);
+            thongKeHoaDon(strDate, strDate1);
+            thongKePhieuNhap(strDate, strDate1);
 
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng định dạng năm-tháng-ngày");

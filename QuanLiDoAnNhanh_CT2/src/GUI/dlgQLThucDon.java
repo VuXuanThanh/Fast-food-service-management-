@@ -430,22 +430,21 @@ public class dlgQLThucDon extends javax.swing.JDialog {
             txtTenMon.setText(doAn.getTenMon());
             txtDVTinh.setText(doAn.getDonViTinh());
             txtGia.setText(doAn.getGia() + "");
-            txtAnh.setText(doAn.getAnh());
-            cbxDanhMuc.removeAllItems();
-            cbxDanhMuc.addItem(bll.showTenDanhMuc2(doAn.getMaDM()));
-
+            txtAnh.setText(doAn.getAnh());    
+//          cbxDanhMuc.addItem(bll.showTenDanhMuc2(doAn.getMaDM()));
+            cbxDanhMuc.setSelectedItem(bll.showTenDanhMuc2(doAn.getMaDM()).toString());
             File f = new File(doAn.getAnh());
             lblAnh.setIcon(new ImageIcon(f.getAbsolutePath()));
         } catch (IndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Lỗi index: " + ex.getMessage());
         } catch (SQLException ex) {
-            Logger.getLogger(dlgQLThucDon.class.getName()).log(Level.SEVERE, null, ex);
-        }
+           JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL: " + ex.getMessage());
+        } 
     }//GEN-LAST:event_tblDoAnNhanhMouseClicked
 
     private void btnNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapActionPerformed
         // TODO add your handling code here:
-        resetText(); 
+         resetText(); 
          txtTenMon.requestFocus();
        
     }//GEN-LAST:event_btnNhapActionPerformed
@@ -456,6 +455,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
             String tenMon = txtTenMon.getText();
             String anh = txtAnh.getText();
             String donViTinh = txtDVTinh.getText();
+            
             // String
             if (tenMon.isEmpty() || anh.isEmpty() || donViTinh.isEmpty()) {
                 throw new NullPointerException("Vui lòng điền đầy đủ thông tin");
@@ -466,7 +466,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
             }
 
             int maDM = bll.getMaDMTheoTen(cbxDanhMuc.getSelectedItem().toString());
-            int t = bll.insertDoAnNhanh(tenMon, anh, donViTinh, 2, gia);
+            int t = bll.insertDoAnNhanh(tenMon, anh, donViTinh, maDM, gia);
 
             loadTable();
             resetText();
