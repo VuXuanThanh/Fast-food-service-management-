@@ -22,6 +22,8 @@ import java.util.Date;
 /**
  *
  * @author Vu Xuan Thanh
+ * branch Vũ Xuân Thành
+ * lỗi pull request
  */
 public class BLL {
 
