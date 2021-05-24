@@ -19,6 +19,7 @@ public class HoaDon {
     private Date ngayXuat;
     private KhachHang khachHang;
     
+    private double tongTien;
     
     
     public static void main(String[] args) {
@@ -45,6 +46,44 @@ public class HoaDon {
         this.maNV = maNV;
         this.ngayXuat = ngayXuat;
         this.khachHang = khachHang;
+    }
+
+    public HoaDon(String maHD, Date ngayXuat, double tongTien) {
+        this.maHD = maHD;
+        this.ngayXuat = ngayXuat;
+        this.tongTien = tongTien;
+    }
+
+    public String getMaHD() {
+        return maHD;
+    }
+
+    public void setMaHD(String maHD) {
+        this.maHD = maHD;
+    }
+
+    public int getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(int maNV) {
+        this.maNV = maNV;
+    }
+
+    public Date getNgayXuat() {
+        return ngayXuat;
+    }
+
+    public void setNgayXuat(Date ngayXuat) {
+        this.ngayXuat = ngayXuat;
+    }
+
+    public double getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(double tongTien) {
+        this.tongTien = tongTien;
     }
     
     

@@ -58,5 +58,5 @@ public class ChiTietHoaDon {
     public double thanhTien(){
         return gia*soLuong;
     }
-    
+
 }
