@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Vu Xuan Thanh
+ * add for Phạm Trung Thế
  */
 public class DAL {
 
