@@ -15,6 +15,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import java.awt.Frame;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
@@ -46,6 +47,10 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
     LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     int month = localDate.getMonthValue();
     int year = localDate.getYear();
+
+    public dlg_BaoCaoThongKe(Frame owner) {
+        super(owner);
+    }
 
     public dlg_BaoCaoThongKe(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

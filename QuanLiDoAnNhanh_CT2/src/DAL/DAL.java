@@ -1,6 +1,7 @@
 package DAL;
 
 
+import DTO.ChiTietPhieuNhap;
 import DTO.TaiKhoan;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -93,6 +94,29 @@ public class DAL {
 //        kq=st.executeQuery("select * from HCN");
 //        return kq;
 //    }
-   
-
+    public void doSQL(String sql)  {
+        try {
+            sta = con.createStatement();
+            sta.execute(sql);
+        } catch (SQLException ex) {
+            System.out.println(" khong thuc hien dc cau lẹnh sql\n"+sql);
+        }
+        
+    }
+     public ArrayList getDataCTPN(String sql)  {
+        ArrayList<ChiTietPhieuNhap> ds = new ArrayList<>();
+        try {
+                sta = con.createStatement();
+                res = sta.executeQuery(sql);
+                while (res.next()) {
+                    ChiTietPhieuNhap sv = new ChiTietPhieuNhap(res.getString(1), 
+                            res.getString(2), res.getInt(3), res.getDouble(4));
+                    ds.add(sv);                        
+                }                                
+        } catch (Exception ex) {           
+            System.out.println("loi getData "+ ex.toString());
+            return null;
+        }
+        return ds;
+    }  
 }

@@ -290,6 +290,11 @@ public class BLL {
         return list;
     }
 
+    public ArrayList getDataChiTietPhieuNhap(){
+        String sql ="select * from chitietphieunhap";
+        ArrayList list = dal.getDataCTPN(sql);
+        return list;
+    }
 //    public ArrayList<HangHoa> showHangHoaCach2(){
 //        ArrayList<HangHoa> ds = new ArrayList<>();
 //        String sql ="select * from HANGHOA";

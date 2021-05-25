@@ -179,15 +179,17 @@ public class frmMain extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_itemDangXuatActionPerformed
 
-    private void mnuNhapKhoNguyenLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuNhapKhoNguyenLieuMouseClicked
-        // TODO add your handling code here:
-        new DlgQLPhieuNhap(this, true).setVisible(true);
-    }//GEN-LAST:event_mnuNhapKhoNguyenLieuMouseClicked
-
     private void mnuBaoCaoThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuBaoCaoThongKeMouseClicked
         // TODO add your handling code here:
-        new dlg_BaoCaoThongKe(this, true).setVisible(true);
+      new dlg_BaoCaoThongKe(this,true).setVisible(true);
     }//GEN-LAST:event_mnuBaoCaoThongKeMouseClicked
+
+    private void mnuNhapKhoNguyenLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuNhapKhoNguyenLieuMouseClicked
+        // TODO add your handling code here:
+         new DlgQLPhieuNhap(this, true).setVisible(true);
+ //      new frmQLPhieuNhap().setVisible(true);
+       
+    }//GEN-LAST:event_mnuNhapKhoNguyenLieuMouseClicked
 
     /**
      * @param args the command line arguments

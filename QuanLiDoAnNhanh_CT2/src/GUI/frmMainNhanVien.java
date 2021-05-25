@@ -83,6 +83,11 @@ public class frmMainNhanVien extends javax.swing.JFrame {
         mnuOrderDoAn.setText("Order đồ ăn");
         mnuOrderDoAn.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         mnuOrderDoAn.setMargin(new java.awt.Insets(5, 5, 5, 10));
+        mnuOrderDoAn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuOrderDoAnMouseClicked(evt);
+            }
+        });
         mainMnu.add(mnuOrderDoAn);
 
         mnuDoiMatKhau.setText("Đổi mật khẩu");
@@ -121,6 +126,11 @@ public class frmMainNhanVien extends javax.swing.JFrame {
            new frmDangNhap().setVisible(true);
         } 
     }//GEN-LAST:event_mnuItemDangXuatActionPerformed
+
+    private void mnuOrderDoAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuOrderDoAnMouseClicked
+        // TODO add your handling code here:
+        new DlgQLPhieuNhap(this, true).setVisible(true);
+    }//GEN-LAST:event_mnuOrderDoAnMouseClicked
 
     /**
      * @param args the command line arguments

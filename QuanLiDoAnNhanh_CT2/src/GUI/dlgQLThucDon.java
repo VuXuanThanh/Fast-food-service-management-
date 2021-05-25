@@ -110,9 +110,10 @@ public class dlgQLThucDon extends javax.swing.JDialog {
         btnThoat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Quản lí thực đơn đồ ăn nhanh");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("QUẢN LÍ ĐỒ ĂN NHANH");
+        jLabel1.setText("QUẢN LÍ THỰC ĐƠN");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -300,6 +301,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
                     .addContainerGap()))
         );
 
+        btnNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button-Add-icon.png"))); // NOI18N
         btnNhap.setText("Nhập");
         btnNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -308,6 +310,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
         });
 
         btnThem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ok-icon.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -316,6 +319,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
         });
 
         btnXoa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button-Close-icon (1).png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,6 +328,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
         });
 
         btnSua.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Actions-document-edit-icon.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,6 +337,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
         });
 
         btnSapXep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSapXep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Actions-view-sort-ascending-icon.png"))); // NOI18N
         btnSapXep.setText("Sắp xếp");
         btnSapXep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,6 +346,7 @@ public class dlgQLThucDon extends javax.swing.JDialog {
         });
 
         btnThoat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Log-Out-icon.png"))); // NOI18N
         btnThoat.setText("Thoát");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
