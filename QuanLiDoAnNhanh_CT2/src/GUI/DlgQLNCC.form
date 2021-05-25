@@ -121,9 +121,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="M&#xe3; nh&#xe0; cung c&#x1ea5;p"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="M&#xe3; nh&#xe0; cung c&#x1ea5;p"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTenNCC">
     </Component>

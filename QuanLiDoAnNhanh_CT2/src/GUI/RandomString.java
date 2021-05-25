@@ -57,6 +57,6 @@ public class RandomString {
         //    String maNL = bll.showMaNLTheoTen(lstNguyenLieu.getSelectedValue().toString());
          //   System.out.println(maNCC+maNL);
          
-            int t = bll.insertPhieuNhap(soPhieu, ngayNhap, maNCC);
+           // int t = bll.insertPhieuNhap(soPhieu, ngayNhap, maNCC);
     }
 }

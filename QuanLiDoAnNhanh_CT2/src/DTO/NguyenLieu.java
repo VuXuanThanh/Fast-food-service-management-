@@ -22,7 +22,7 @@ public class NguyenLieu {
         this.tenNL = tenNL;
     }
 
-    public NguyenLieu(String maNL, String tenNL, int hanSD, String donViTinh) {
+    public NguyenLieu(String maNL, String tenNL, String donViTinh,  int hanSD) {
         this.maNL = maNL;
         this.tenNL = tenNL;
         this.hanSD = hanSD;

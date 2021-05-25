@@ -222,11 +222,11 @@ public class DlgQLNguyenLieu extends javax.swing.JDialog {
     private void tblNguyenLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNguyenLieuMouseClicked
         txtMaNL.setEnabled(false);
         int chon = tblNguyenLieu.getSelectedRow();
-        txtMaNL.setText(nl.get(chon).getManl() + "");
-        txtTenNL.setText(nl.get(chon).getTennl());
-        txtHanSD.setText(nl.get(chon).getHansd() + "");
+        txtMaNL.setText(nl.get(chon).getMaNL()+ "");
+        txtTenNL.setText(nl.get(chon).getTenNL());
+        txtHanSD.setText(nl.get(chon).getHanSD()+ "");
         int index;
-        if (nl.get(chon).getDonvitinh().equalsIgnoreCase("Chiếc")) {
+        if (nl.get(chon).getDonViTinh().equalsIgnoreCase("Chiếc")) {
             index = 0;
         } else {
             index = 1;
@@ -240,7 +240,7 @@ public class DlgQLNguyenLieu extends javax.swing.JDialog {
             String manl, tennl, donvitinh;
             int hansd = 0;
             manl = txtMaNL.getText();
-            n.setManl(manl);
+            n.setMaNL(manl);
             tennl = txtTenNL.getText();
             if (nl.contains(n)) {
                 throw new Exception("Đã tồn tại nguyên liệu này.");
@@ -295,7 +295,7 @@ public class DlgQLNguyenLieu extends javax.swing.JDialog {
         } else {
             int check = JOptionPane.showConfirmDialog(this, "Xóa nguyên liệu này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
             if (check == JOptionPane.YES_OPTION) {
-                bll.xoaNL(nl.get(chon).getManl());
+                bll.xoaNL(nl.get(chon).getMaNL());
                 loadTbl();
                 JOptionPane.showMessageDialog(this, "Xóa thành công.");
             }

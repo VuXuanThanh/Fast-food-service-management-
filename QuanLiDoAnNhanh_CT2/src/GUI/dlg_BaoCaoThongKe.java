@@ -256,6 +256,7 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Data-Filled-Filter-icon.png"))); // NOI18N
         btnThongKe.setText("Thống kê");
         btnThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,6 +264,7 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
             }
         });
 
+        btnInBaoCao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/printer-icon.png"))); // NOI18N
         btnInBaoCao.setText("In báo cáo");
         btnInBaoCao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,6 +272,7 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
             }
         });
 
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Log-Out-icon.png"))); // NOI18N
         btnThoat.setText("Thoát");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

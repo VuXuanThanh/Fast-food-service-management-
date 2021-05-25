@@ -105,6 +105,11 @@ public class frmMain extends javax.swing.JFrame {
         itemQLNhaCungCap.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemQLNhaCungCap.setSelected(true);
         itemQLNhaCungCap.setText("Quản lí nhà cung cấp");
+        itemQLNhaCungCap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemQLNhaCungCapActionPerformed(evt);
+            }
+        });
         mnuQuanLi.add(itemQLNhaCungCap);
 
         itemQLNhanVien.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
@@ -117,6 +122,11 @@ public class frmMain extends javax.swing.JFrame {
         itemQLNguyenLieu.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemQLNguyenLieu.setSelected(true);
         itemQLNguyenLieu.setText("Quản lí nguyên liệu");
+        itemQLNguyenLieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemQLNguyenLieuActionPerformed(evt);
+            }
+        });
         mnuQuanLi.add(itemQLNguyenLieu);
 
         itemQLDanhMuc.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
@@ -190,6 +200,16 @@ public class frmMain extends javax.swing.JFrame {
  //      new frmQLPhieuNhap().setVisible(true);
        
     }//GEN-LAST:event_mnuNhapKhoNguyenLieuMouseClicked
+
+    private void itemQLNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQLNhaCungCapActionPerformed
+        // TODO add your handling code here:
+        new DlgQLNCC(this, true).setVisible(true);
+    }//GEN-LAST:event_itemQLNhaCungCapActionPerformed
+
+    private void itemQLNguyenLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQLNguyenLieuActionPerformed
+        // TODO add your handling code here:
+        new DlgQLNguyenLieu(this, true).setVisible(true);
+    }//GEN-LAST:event_itemQLNguyenLieuActionPerformed
 
     /**
      * @param args the command line arguments

@@ -16,22 +16,22 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class DlgQLNCC extends javax.swing.JDialog {
-
+    
     BLL bll = new BLL();
     ArrayList<NhaCungCap> ncc = new ArrayList<NhaCungCap>();
-
+    
     public DlgQLNCC(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         txtMaNCC.disable();
         loadTbl();
     }
-
+    
     public void loadTbl() {
         ncc = bll.showNCC();
         tblNCC.setModel(new CustomTableNCC(ncc));
     }
-
+    
     public void clear() {
         txtMaNCC.setText("");
         txtTenNCC.setText("");
@@ -242,7 +242,7 @@ public class DlgQLNCC extends javax.swing.JDialog {
         if (chon == -1 || ncc.size() == 0) {
             JOptionPane.showMessageDialog(this, "Không có dữ liệu để sửa.");
         } else {
-
+            
             try {
                 mancc = Integer.parseInt(txtMaNCC.getText());
                 tenncc = txtTenNCC.getText();
@@ -287,6 +287,7 @@ public class DlgQLNCC extends javax.swing.JDialog {
         int check = JOptionPane.showConfirmDialog(this, "Chắc chắn muốn thoát?", "Xác nhận thoát", JOptionPane.YES_NO_OPTION);
         if (check == JOptionPane.YES_OPTION) {
             System.exit(0);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_btThoatActionPerformed
 
