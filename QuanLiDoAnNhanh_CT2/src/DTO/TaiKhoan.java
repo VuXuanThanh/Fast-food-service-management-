@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author Vu Xuan Thanh
  */
 public class TaiKhoan {
+    // hihi cố ý để ID cho thằng master xung đột
     private int ID;
     private String tenTaiKhoan, matKhau;
     private int quyen;
