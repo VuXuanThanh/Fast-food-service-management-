@@ -5,11 +5,15 @@
  */
 package GUI;
 
-import DTO.CustomTable;
+
 import DTO.TaiKhoan;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import BLL.BLL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -21,8 +25,8 @@ public class frmDangNhap extends javax.swing.JFrame {
      * Creates new form frmDangNhap
      */
     BLL bll = new BLL();
-    ArrayList<TaiKhoan> list = new ArrayList<>();
-    public static String tenTaiKhoan;
+    ArrayList<TaiKhoan> listTK = new ArrayList<>();
+    public static String tenTKDN;
     public static int quyen;
     public frmDangNhap() {
         initComponents();
@@ -31,13 +35,12 @@ public class frmDangNhap extends javax.swing.JFrame {
 
     }
     public void load(){
-        jTable1.setModel(new CustomTable(list));
+        
     }
     public void getData(){
-        list = bll.showHangHoa();
+      
         load();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,8 +59,6 @@ public class frmDangNhap extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         txtReset = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Đăng nhập");
@@ -99,7 +100,7 @@ public class frmDangNhap extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtUserName)
                     .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
@@ -112,14 +113,15 @@ public class frmDangNhap extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User-Interface-Login-icon.png"))); // NOI18N
         btnLogin.setText("Đăng nhập");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,25 +130,13 @@ public class frmDangNhap extends javax.swing.JFrame {
         });
 
         txtReset.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button-Close-icon.png"))); // NOI18N
         txtReset.setText("Hủy");
         txtReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtResetActionPerformed(evt);
             }
         });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,16 +145,11 @@ public class frmDangNhap extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(144, 144, 144)
-                        .addComponent(txtReset, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addGap(115, 115, 115)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106)
+                .addComponent(txtReset, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,13 +157,11 @@ public class frmDangNhap extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtReset, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,22 +181,35 @@ public class frmDangNhap extends javax.swing.JFrame {
             txtPassword.requestFocus();
             return;
         }
-        
+        try {
+            listTK = bll.showTaiKhoan();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
         TaiKhoan tk = new TaiKhoan(tenTaiKhoan, matKhau);
-        this.tenTaiKhoan=tenTaiKhoan;
-        this.quyen=1;
-        if(!list.contains(tk)){
-            JOptionPane.showMessageDialog(null, "Không chứa tên và mật khẩu này trong csdl");
+        if(!listTK.contains(tk)){
+            JOptionPane.showMessageDialog(null, "Vui lòng kiểm tra tên hoặc mật khẩu");
             return;
         }
-        new frmMain().setVisible(true);
-        txtUserName.setText("");
-        txtPassword.setText("");
+        TaiKhoan quyen = new TaiKhoan();
+            quyen = listTK.get(listTK.indexOf(tk));
+        tenTKDN = "Xin chào " +quyen.getTenTaiKhoan();
+        
+        if(quyen.getQuyen()==1){
+           
+            new frmMain().setVisible(true);
+            this.setVisible(false);
+        }
+        else{
+            
+              new frmMainNhanVien().setVisible(true);
+        }      
+        this.setVisible(false);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResetActionPerformed
         // TODO add your handling code here:
-       
+       System.exit(0);
     }//GEN-LAST:event_txtResetActionPerformed
 
     /**
@@ -258,8 +254,6 @@ public class frmDangNhap extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JButton txtReset;
     private javax.swing.JTextField txtUserName;
