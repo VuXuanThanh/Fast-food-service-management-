@@ -116,6 +116,11 @@ public class frmMain extends javax.swing.JFrame {
         itemQLNhanVien.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemQLNhanVien.setSelected(true);
         itemQLNhanVien.setText("Quản lí nhân viên");
+        itemQLNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemQLNhanVienMouseClicked(evt);
+            }
+        });
         mnuQuanLi.add(itemQLNhanVien);
 
         itemQLNguyenLieu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
@@ -210,6 +215,11 @@ public class frmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         new DlgQLNguyenLieu(this, true).setVisible(true);
     }//GEN-LAST:event_itemQLNguyenLieuActionPerformed
+
+    private void itemQLNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemQLNhanVienMouseClicked
+        new frmQuanLyNhanVien().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_itemQLNhanVienMouseClicked
 
     /**
      * @param args the command line arguments

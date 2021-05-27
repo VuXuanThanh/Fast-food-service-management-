@@ -93,6 +93,11 @@ public class frmMainNhanVien extends javax.swing.JFrame {
         mnuDoiMatKhau.setText("Đổi mật khẩu");
         mnuDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         mnuDoiMatKhau.setMargin(new java.awt.Insets(5, 5, 5, 10));
+        mnuDoiMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuDoiMatKhauMouseClicked(evt);
+            }
+        });
         mainMnu.add(mnuDoiMatKhau);
 
         setJMenuBar(mainMnu);
@@ -131,6 +136,10 @@ public class frmMainNhanVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         new DlgQLPhieuNhap(this, true).setVisible(true);
     }//GEN-LAST:event_mnuOrderDoAnMouseClicked
+
+    private void mnuDoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDoiMatKhauMouseClicked
+        new frmDoiMatKhau().setVisible(true);
+    }//GEN-LAST:event_mnuDoiMatKhauMouseClicked
 
     /**
      * @param args the command line arguments

@@ -10,11 +10,11 @@ import DTO.CustomTable_HoaDonBaoCaoTK;
 import DTO.CustomTable_PhieuNhapBaoCaoTK;
 import DTO.HoaDon;
 import DTO.PhieuNhap;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfWriter;
+//import com.lowagie.text.Document;
+//import com.lowagie.text.DocumentException;
+//import com.lowagie.text.Paragraph;
+//import com.lowagie.text.pdf.PdfPTable;
+//import com.lowagie.text.pdf.PdfWriter;
 import java.awt.Frame;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -428,137 +428,137 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
 
     private void btnInBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInBaoCaoActionPerformed
         // TODO add your handling code here:
-        double sumHD = 0;
-        double sumPN = 0;
-        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo tháng")) {
-            sumHD = thongKeHoaDon(month);
-            sumPN = thongKePhieuNhap(month);
-        }
-        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo ngày")) {
-            sumHD = thongKeHoaDon(txtNgayBatDau.getText(), txtNgayKetThuc.getText());
-            sumPN = thongKePhieuNhap(txtNgayBatDau.getText(), txtNgayKetThuc.getText());
-        }
-        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo năm")) {
-            sumHD = thongKeHoaDon(year, true);
-            sumPN = thongKePhieuNhap(year, true);
-        }
-        String path = "";
-        JFileChooser j = new JFileChooser();
-        j.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int x = j.showSaveDialog(this);
-        if (x == JFileChooser.APPROVE_OPTION) {
-            path = j.getSelectedFile().getPath();
-            Document document = new Document();
-            try {
-                PdfWriter.getInstance(document, new FileOutputStream(path + "_baocao_cangtinso2.pdf"));
-                document.open();
-                Paragraph para = new Paragraph("                        BAO CAO DOANH THU CANG TIN SO 2 "
-                        + cbxLoaiThoiGian.getSelectedItem().toString());
-                para.spacingBefore();
-                document.add(para);
-                for (int i = 0; i < 4; i++) {
-                    document.add(new Paragraph("        "));
-                }
-                document.add(new Paragraph("Danh sach chi tiet hoa don"));
-                document.add(new Paragraph("  "));
-                document.add(new Paragraph("  "));
-                PdfPTable tbl = new PdfPTable(3);
-                tbl.addCell("Ma hoa don");
-                tbl.addCell("Ngay xuat");
-                tbl.addCell("Tong tien");
-                for (HoaDon hoaDon : list) {
-                    String maHD = hoaDon.getMaHD();
-                    Date ngayXuat = hoaDon.getNgayXuat();
-                    double tongTien = hoaDon.getTongTien();
-
-                    tbl.addCell(maHD);
-                    tbl.addCell(ngayXuat.toString());
-                    tbl.addCell(tongTien + "");
-
-                }
-                document.add(tbl);
-                document.add(new Paragraph("                                   "
-                        + "                               Tong thu = " + sumHD));
-
-                PdfPTable tblNL = new PdfPTable(3);
-                document.add(new Paragraph("  "));
-                document.add(new Paragraph("  "));
-                document.add(new Paragraph("Danh sach chi tiet phieu nhap"));
-                document.add(new Paragraph("  "));
-                document.add(new Paragraph("  "));
-                tblNL.addCell("Ma phieu nhap");
-                tblNL.addCell("Ngay nhap");
-                tblNL.addCell("Tong tien");
-                for (PhieuNhap pn : listPN) {
-                    String maHD = pn.getSoPhieu();
-                    Date ngayNhap = pn.getNgayNhap();
-                    double tongTien = pn.getTongTien();
-
-                    tblNL.addCell(maHD);
-                    tblNL.addCell(ngayNhap.toString());
-                    tblNL.addCell(tongTien + "");
-
-                }
-                document.add(tblNL);
-
-                document.add(new Paragraph("                                   "
-                        + "                               Tong chi = " + sumPN));
-                if (sumHD >= sumPN) {
-                    document.add(new Paragraph("                                   "
-                            + "                               Lai = " + (sumHD - sumPN)));
-                } else {
-                    document.add(new Paragraph("                                   "
-                            + "                               Lo = " + (sumPN - sumHD)));
-                }
-
-                JOptionPane.showMessageDialog(null, "Tạo thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, "Lỗi ko tìm thấy file", "Thông báo", JOptionPane.ERROR_MESSAGE);
-            } catch (DocumentException ex) {
-                JOptionPane.showMessageDialog(null, "Lỗi " + ex.getMessage(), "Thông báo", JOptionPane.ERROR_MESSAGE);
-            }
-
-            document.close();
-
-        }
+//        double sumHD = 0;
+//        double sumPN = 0;
+//        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo tháng")) {
+//            sumHD = thongKeHoaDon(month);
+//            sumPN = thongKePhieuNhap(month);
+//        }
+//        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo ngày")) {
+//            sumHD = thongKeHoaDon(txtNgayBatDau.getText(), txtNgayKetThuc.getText());
+//            sumPN = thongKePhieuNhap(txtNgayBatDau.getText(), txtNgayKetThuc.getText());
+//        }
+//        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo năm")) {
+//            sumHD = thongKeHoaDon(year, true);
+//            sumPN = thongKePhieuNhap(year, true);
+//        }
+//        String path = "";
+//        JFileChooser j = new JFileChooser();
+//        j.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+//        int x = j.showSaveDialog(this);
+//        if (x == JFileChooser.APPROVE_OPTION) {
+//            path = j.getSelectedFile().getPath();
+//            Document document = new Document();
+//            try {
+//                PdfWriter.getInstance(document, new FileOutputStream(path + "_baocao_cangtinso2.pdf"));
+//                document.open();
+//                Paragraph para = new Paragraph("                        BAO CAO DOANH THU CANG TIN SO 2 "
+//                        + cbxLoaiThoiGian.getSelectedItem().toString());
+//                para.spacingBefore();
+//                document.add(para);
+//                for (int i = 0; i < 4; i++) {
+//                    document.add(new Paragraph("        "));
+//                }
+//                document.add(new Paragraph("Danh sach chi tiet hoa don"));
+//                document.add(new Paragraph("  "));
+//                document.add(new Paragraph("  "));
+//                PdfPTable tbl = new PdfPTable(3);
+//                tbl.addCell("Ma hoa don");
+//                tbl.addCell("Ngay xuat");
+//                tbl.addCell("Tong tien");
+//                for (HoaDon hoaDon : list) {
+//                    String maHD = hoaDon.getMaHD();
+//                    Date ngayXuat = hoaDon.getNgayXuat();
+//                    double tongTien = hoaDon.getTongTien();
+//
+//                    tbl.addCell(maHD);
+//                    tbl.addCell(ngayXuat.toString());
+//                    tbl.addCell(tongTien + "");
+//
+//                }
+//                document.add(tbl);
+//                document.add(new Paragraph("                                   "
+//                        + "                               Tong thu = " + sumHD));
+//
+//                PdfPTable tblNL = new PdfPTable(3);
+//                document.add(new Paragraph("  "));
+//                document.add(new Paragraph("  "));
+//                document.add(new Paragraph("Danh sach chi tiet phieu nhap"));
+//                document.add(new Paragraph("  "));
+//                document.add(new Paragraph("  "));
+//                tblNL.addCell("Ma phieu nhap");
+//                tblNL.addCell("Ngay nhap");
+//                tblNL.addCell("Tong tien");
+//                for (PhieuNhap pn : listPN) {
+//                    String maHD = pn.getSoPhieu();
+//                    Date ngayNhap = pn.getNgayNhap();
+//                    double tongTien = pn.getTongTien();
+//
+//                    tblNL.addCell(maHD);
+//                    tblNL.addCell(ngayNhap.toString());
+//                    tblNL.addCell(tongTien + "");
+//
+//                }
+//                document.add(tblNL);
+//
+//                document.add(new Paragraph("                                   "
+//                        + "                               Tong chi = " + sumPN));
+//                if (sumHD >= sumPN) {
+//                    document.add(new Paragraph("                                   "
+//                            + "                               Lai = " + (sumHD - sumPN)));
+//                } else {
+//                    document.add(new Paragraph("                                   "
+//                            + "                               Lo = " + (sumPN - sumHD)));
+//                }
+//
+//                JOptionPane.showMessageDialog(null, "Tạo thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//            } catch (FileNotFoundException ex) {
+//                JOptionPane.showMessageDialog(null, "Lỗi ko tìm thấy file", "Thông báo", JOptionPane.ERROR_MESSAGE);
+//            } catch (DocumentException ex) {
+//                JOptionPane.showMessageDialog(null, "Lỗi " + ex.getMessage(), "Thông báo", JOptionPane.ERROR_MESSAGE);
+//            }
+//
+//            document.close();
+//
+//        }
     }//GEN-LAST:event_btnInBaoCaoActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-        // TODO add your handling code here:
-        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo tháng")) {
-            thongKeHoaDon(month);
-            thongKePhieuNhap(month);
-            return;
-        }
-        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo năm")) {
-            thongKeHoaDon(year, true);
-            thongKePhieuNhap(year, true);
-            return;
-        }
-        try {
-            String format = "yyyy-MM-dd";
-            SimpleDateFormat sdf = new SimpleDateFormat(format);
-            String ngayBatDau = txtNgayBatDau.getText();
-            String ngayKetThuc = txtNgayKetThuc.getText();
-            if (ngayBatDau.isEmpty() || ngayKetThuc.isEmpty()) {
-                throw new NullPointerException("Lỗi chưa nhập ngày để thống kê");
-            }
-            ngayBatDau.replace("/", "-");
-            ngayKetThuc.replace("/", "-");
-            sdf.setLenient(false);
-            Date date = sdf.parse(ngayBatDau);
-            Date date2 = sdf.parse(ngayKetThuc);
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String strDate = dateFormat.format(date);
-            String strDate1 = dateFormat.format(date2);
-            thongKeHoaDon(strDate, strDate1);
-            thongKePhieuNhap(strDate, strDate1);
-
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng định dạng năm-tháng-ngày");
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+//        // TODO add your handling code here:
+//        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo tháng")) {
+//            thongKeHoaDon(month);
+//            thongKePhieuNhap(month);
+//            return;
+//        }
+//        if (cbxLoaiThoiGian.getSelectedItem().equals("Thống kê theo năm")) {
+//            thongKeHoaDon(year, true);
+//            thongKePhieuNhap(year, true);
+//            return;
+//        }
+//        try {
+//            String format = "yyyy-MM-dd";
+//            SimpleDateFormat sdf = new SimpleDateFormat(format);
+//            String ngayBatDau = txtNgayBatDau.getText();
+//            String ngayKetThuc = txtNgayKetThuc.getText();
+//            if (ngayBatDau.isEmpty() || ngayKetThuc.isEmpty()) {
+//                throw new NullPointerException("Lỗi chưa nhập ngày để thống kê");
+//            }
+//            ngayBatDau.replace("/", "-");
+//            ngayKetThuc.replace("/", "-");
+//            sdf.setLenient(false);
+//            Date date = sdf.parse(ngayBatDau);
+//            Date date2 = sdf.parse(ngayKetThuc);
+//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            String strDate = dateFormat.format(date);
+//            String strDate1 = dateFormat.format(date2);
+//            thongKeHoaDon(strDate, strDate1);
+//            thongKePhieuNhap(strDate, strDate1);
+//
+//        } catch (ParseException ex) {
+//            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng định dạng năm-tháng-ngày");
+//        } catch (NullPointerException ex) {
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        }
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     /**

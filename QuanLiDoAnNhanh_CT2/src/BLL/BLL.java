@@ -10,8 +10,10 @@ import DTO.ChiTietPhieuNhap;
 import DTO.DanhMuc;
 import DTO.DoAn;
 import DTO.HoaDon;
+import DTO.Luong;
 import DTO.NguyenLieu;
 import DTO.NhaCungCap;
+import DTO.NhanVien;
 import DTO.PhieuNhap;
 import DTO.TaiKhoan;
 
@@ -25,7 +27,13 @@ import DTO.TaiKhoan;
  * @author Vu Xuan Thanh branch Vũ Xuân Thành lỗi pull request---------thành vũ xuân push code
  */
 public class BLL {
-
+   
+    //Nguyen Tuan Thanh sua cho nay
+//    DAL dal;
+//    public BLL(){
+//        dal = new DAL();
+//    }
+    //
     DAL dal = new DAL();
 
     // form đăng nhập
@@ -422,5 +430,62 @@ public class BLL {
         return list;
     }
     //--------------------------------------------------
+    
+     //nguyen tuan thanh
+    public void themnv(NhanVien nv) throws Exception
+    {
+       String sql = "Insert into NHANVIEN values('"+nv.getMaNhanVien()+"', '"+nv.getHoTen()+"', '"+nv.getGioiTinh()+"', '"+
+               nv.getSoCMND()+"', '"+nv.getNgaySinh()+"', '"+nv.getDiaChi()+"', '"+nv.getSoDT()+"' )";   
+       dal.doSQL(sql);
+       
+       
+       sql = "Insert into TAIKHOAN values ('"+nv.getMaNhanVien()+"', '123456', 1)";
+       dal.doSQL(sql);     
+ 
+    }
+    
+    public void suanv(NhanVien nv) throws Exception
+    {
+        String sql = "Update NHANVIEN set TENNHANVIEN = '"+nv.getHoTen()+"', GIOITINH = '"+nv.getGioiTinh()+"', SOCMND = '"+
+               nv.getSoCMND()+"', NGAYSINH =  '"+nv.getNgaySinh()+"', DIACHI = '"+nv.getDiaChi()+"',SODT = '"+nv.getSoDT()+"' where MANHANVIEN = '"+nv.getMaNhanVien()+"'";
+        dal.doSQL(sql);
+    }
+    
+    public void xoanv(String maNhanVien) throws Exception
+    {
+        String sql = "Delete from TAIKHOAN where TENTAIKHOAN = '"+maNhanVien+"'";
+        dal.doSQL(sql);
+        
+        sql = "Delete from NHANVIEN where MANHANVIEN = '"+maNhanVien+"'";
+        dal.doSQL(sql);
+    }
+    
+   public void tinhLuong(Luong l) throws Exception
+   {
+       String sql = "Insert into LUONG values('"+l.getMaLuong()+"', " +l.getThang()+",'"+l.getMaNhanVien()+"', "+l.getSoGioLam()+", "+l.tinhLuong()+")";
+       dal.doSQL(sql);
+   }
+   
+   public void doimk(String tk, String mk){
+       String sql = "update TAIKHOAN set MATKHAU = '" + mk + "' where TENTAIKHOAN ='" +tk+ "'";
+       dal.doSQL(sql);
+   }
+   
+   public ArrayList<Luong> bangLuong()
+   {
+       ArrayList<Luong> ds = new ArrayList<>();
+       String sql = "select * from LUONG";
+       ds = dal.getDataLuong(sql);
+       return ds;
+   }
+   
+   public ArrayList<NhanVien> bangNhanVien()
+   {
+       ArrayList<NhanVien> ds = new ArrayList<>();
+       String sql = "select * from NHANVIEN";
+       ds = dal.getDataNhanVien(sql);
+       return ds;
+   }
+   //
     
 }

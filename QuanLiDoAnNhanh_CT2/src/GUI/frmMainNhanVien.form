@@ -67,6 +67,9 @@
               <Insets value="[5, 5, 5, 10]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnuDoiMatKhauMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
