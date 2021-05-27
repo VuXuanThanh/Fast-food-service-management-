@@ -461,9 +461,9 @@ public class BLL {
         }
         return true;
     }
-    public int suaDM(String tendm){
+    public int suaDM(int maDM, String tendm){
         int t =0;
-        String sql ="update danhmuc set tendm ='"+tendm+"'";
+        String sql ="update danhmuc set tendm ='"+tendm+"' where madm ="+maDM+"";
         try {
             t = dal.getStatement().executeUpdate(sql);
         } catch (Exception ex) {

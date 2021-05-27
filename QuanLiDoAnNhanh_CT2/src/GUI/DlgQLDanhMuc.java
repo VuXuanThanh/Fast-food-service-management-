@@ -233,7 +233,7 @@ public class DlgQLDanhMuc extends javax.swing.JDialog {
                 if (tendm.isEmpty()) {
                     throw new IllegalArgumentException("Không được để trống tên nhà cung cấp.");
                 }
-                bll.suaDM(tendm);
+                bll.suaDM(Integer.parseInt(txtMaDM.getText()), tendm);
                 clear();
                 loadTbl();
             } catch (Exception ex) {
