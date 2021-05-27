@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DAL.DAL;
+import DTO.DanhMuc;
 import DTO.NguyenLieu;
 import DTO.NhaCungCap;
 import DTO.TaiKhoan;
@@ -133,6 +134,62 @@ public class BLL {
         String sql ="update nguyenlieu set tennl ='"+tenNL+"', donvitinh='"+donvitinh+"', hansudung="+hanSD+" where manl ='"+maNL+"'";
         try {
             t = dal.getStatement().executeUpdate(sql);
+        } catch (Exception ex) {
+            Logger.getLogger(BLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return t;
+    }
+    // Nguyễn Trung Thành - DM
+    public ArrayList<DanhMuc> showDM(){
+        ArrayList<DanhMuc> ds = new ArrayList<>();
+        String sql ="select * from danhmuc";
+        ResultSet res = dal.getResultSet(sql);
+        try {
+            while(res.next()){
+                DanhMuc dm = new DanhMuc(res.getInt(1),
+                        res.getString(2));
+                ds.add(dm);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ds;
+    }
+    public int themDM(String tenDM){
+        int t =0;
+        try {
+            t = dal.getStatement().executeUpdate("insert into danhmuc (tendm) values('"+tenDM+"')");
+        } catch (Exception ex) {
+            Logger.getLogger(BLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return t;
+    }
+    public boolean checkTenDM(String tendm){
+        String sql ="select * from danhmuc WHERE tendm = '"+tendm+"'";
+        ResultSet res = dal.getResultSet(sql);
+        try {
+            if(res.next()){
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    public int suaDM(String tendm){
+        int t =0;
+        String sql ="update danhmuc set tendm ='"+tendm+"'";
+        try {
+            t = dal.getStatement().executeUpdate(sql);
+        } catch (Exception ex) {
+            Logger.getLogger(BLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return t;
+    }
+    public int xoaDM(int madm){
+        int t =0;
+        try {
+            t = dal.getStatement().executeUpdate("delete from danhmuc where madm ="+madm+"");
         } catch (Exception ex) {
             Logger.getLogger(BLL.class.getName()).log(Level.SEVERE, null, ex);
         }
