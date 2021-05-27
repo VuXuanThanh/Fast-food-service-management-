@@ -28,6 +28,9 @@ public class frmDangNhap extends javax.swing.JFrame {
     ArrayList<TaiKhoan> listTK = new ArrayList<>();
     public static String tenTKDN;
     public static int quyen;
+    //Nguyen Tuan Thanh thêm
+    public static String tk;
+    //
     public frmDangNhap() {
         initComponents();
         getData();
@@ -170,7 +173,12 @@ public class frmDangNhap extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         String tenTaiKhoan = txtUserName.getText();
+     
         String matKhau = txtPassword.getText();
+         //Nguyen tuan thanh thêm
+        tk = txtUserName.getText(); 
+        //
+        
         if(tenTaiKhoan.isEmpty()){
             JOptionPane.showMessageDialog(null, "Vui lòng nhập tên đăng nhập hợp lệ");
             txtUserName.requestFocus();
@@ -195,7 +203,8 @@ public class frmDangNhap extends javax.swing.JFrame {
             quyen = listTK.get(listTK.indexOf(tk));
         tenTKDN = "Xin chào " +quyen.getTenTaiKhoan();
         
-        if(quyen.getQuyen()==1){
+        //Tuan Thanh sua quyen lai = 0,  0 la admin;
+        if(quyen.getQuyen()==0){
            
             new frmMain().setVisible(true);
             this.setVisible(false);

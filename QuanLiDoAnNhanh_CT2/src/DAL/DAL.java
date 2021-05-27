@@ -2,6 +2,8 @@ package DAL;
 
 
 import DTO.ChiTietPhieuNhap;
+import DTO.Luong;
+import DTO.NhanVien;
 import DTO.TaiKhoan;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -120,4 +122,41 @@ public class DAL {
         }
         return ds;
     }  
+    
+     //Nguyen Tuan Thanh
+     public ArrayList<Luong> getDataLuong(String sql) {
+        ArrayList<Luong> ds = new ArrayList<>();
+        try{
+            sta = getStatement();
+            res = executeQuery(sql);
+
+            while (res.next()) {
+                Luong l = new Luong(
+                       res.getString(1),res.getInt(2), res.getString(3), res.getInt(4), res.getDouble(5));
+                ds.add(l);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Lỗi getData " + ex.toString());
+            return null;
+        }
+        return ds;
+        }
+    public ArrayList<NhanVien> getDataNhanVien(String sql) {
+        ArrayList<NhanVien> ds = new ArrayList<>();
+        try{
+            sta = getStatement();
+            res = executeQuery(sql);
+
+            while (res.next()) {
+                NhanVien nv = new NhanVien( res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getDate(5).toString(), res.getString(6), res.getString(7));
+                ds.add(nv);
+            }
+        } catch (Exception ex) {
+            System.out.println("Lỗi getData " + ex.toString());
+            return null;
+        }
+        return ds;
+        }
+    ///
 }

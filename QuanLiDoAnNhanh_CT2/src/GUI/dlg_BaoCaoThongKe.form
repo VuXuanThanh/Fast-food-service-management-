@@ -199,6 +199,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnThongKe">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/Data-Filled-Filter-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
               </Properties>
               <Events>
@@ -207,6 +210,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnInBaoCao">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/printer-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="In b&#xe1;o c&#xe1;o"/>
               </Properties>
               <Events>
@@ -215,6 +221,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnThoat">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/Log-Out-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
               </Properties>
             </Component>

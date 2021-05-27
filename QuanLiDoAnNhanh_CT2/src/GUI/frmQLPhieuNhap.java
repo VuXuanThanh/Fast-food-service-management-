@@ -51,22 +51,22 @@ public class frmQLPhieuNhap extends javax.swing.JFrame {
     }
 
     public void loadTable() {
-        listCTPN = bll.getDataChiTietPhieuNhap();
+      //  listCTPN = bll.getDataChiTietPhieuNhap();
     }
 
     public void loadTenNguyenLieu() {
 
-        try {
-            listNguyenLieu = bll.showTenNguyenLieu();
-        } catch (SQLException ex) {
-            Logger.getLogger(frmQLPhieuNhap.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        DefaultListModel<String> model = new DefaultListModel<>();
-        for (String string : listNguyenLieu) {
-            model.addElement(string);
-        }
-        lstNguyenLieu.setModel(model);
+//        try {
+//            listNguyenLieu = bll.showTenNguyenLieu();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(frmQLPhieuNhap.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        DefaultListModel<String> model = new DefaultListModel<>();
+//        for (String string : listNguyenLieu) {
+//            model.addElement(string);
+//        }
+//        lstNguyenLieu.setModel(model);
     }
 
     public void resetText() {
@@ -77,17 +77,17 @@ public class frmQLPhieuNhap extends javax.swing.JFrame {
     }
 
     public void loadTenNhaCC() {
-        ArrayList<String> dsNCC = new ArrayList<>();
-
-        try {
-            dsNCC = bll.showTenNCC();
-        } catch (SQLException ex) {
-            Logger.getLogger(frmQLPhieuNhap.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        for (String string : dsNCC) {
-            cbxNhaCungCap.addItem(string);
-        }
+//        ArrayList<String> dsNCC = new ArrayList<>();
+//
+//        try {
+//            dsNCC = bll.showTenNCC();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(frmQLPhieuNhap.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        for (String string : dsNCC) {
+//            cbxNhaCungCap.addItem(string);
+//        }
     }
 
     /**
@@ -399,123 +399,123 @@ public class frmQLPhieuNhap extends javax.swing.JFrame {
 
     private void btnTaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoActionPerformed
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            resetText();
-            txtSoPhieu.setText("PH" + RandomString.getAlphaNumericString(18));
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDateTime now = LocalDateTime.now();
-            txtNgayNhap.setText(dtf.format(now));
-            int maNCC;
-
-            maNCC = bll.showMaCCTheoTen(cbxNhaCungCap.getSelectedItem().toString());
-
-            int t = bll.insertPhieuNhap(txtSoPhieu.getText(), txtNgayNhap.getText(), maNCC);
-
-            txtSoPhieu.setEnabled(true);
-            txtNgayNhap.setEnabled(true);
-            txtSoPhieu.setEditable(false);
-            txtNgayNhap.setEditable(false);
-            btnThem.setEnabled(true);
-            btnXoa.setEnabled(true);
-            txtMaNguyenLieu.setEnabled(true);
-            txtGiaNhap.setEnabled(true);
-            spnSoLuong.setEnabled(true);
-            lstNguyenLieu.setEnabled(true);
-            txtMaNguyenLieu.setEditable(false);
-            JOptionPane.showMessageDialog(null, "Đã thêm thành công 1 phiếu nhập " + txtSoPhieu.getText() + " "
-                    + txtNgayNhap.getText());
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi truy vấn " + ex.getMessage());
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi " + ex.getMessage());
-        }
+//        try {
+//            // TODO add your handling code here:
+//            resetText();
+//            txtSoPhieu.setText("PH" + RandomString.getAlphaNumericString(18));
+//            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//            LocalDateTime now = LocalDateTime.now();
+//            txtNgayNhap.setText(dtf.format(now));
+//            int maNCC;
+//
+//            maNCC = bll.showMaCCTheoTen(cbxNhaCungCap.getSelectedItem().toString());
+//
+//            int t = bll.insertPhieuNhap(txtSoPhieu.getText(), txtNgayNhap.getText(), maNCC);
+//
+//            txtSoPhieu.setEnabled(true);
+//            txtNgayNhap.setEnabled(true);
+//            txtSoPhieu.setEditable(false);
+//            txtNgayNhap.setEditable(false);
+//            btnThem.setEnabled(true);
+//            btnXoa.setEnabled(true);
+//            txtMaNguyenLieu.setEnabled(true);
+//            txtGiaNhap.setEnabled(true);
+//            spnSoLuong.setEnabled(true);
+//            lstNguyenLieu.setEnabled(true);
+//            txtMaNguyenLieu.setEditable(false);
+//            JOptionPane.showMessageDialog(null, "Đã thêm thành công 1 phiếu nhập " + txtSoPhieu.getText() + " "
+//                    + txtNgayNhap.getText());
+//
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Lỗi truy vấn " + ex.getMessage());
+//
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(null, "Lỗi " + ex.getMessage());
+//        }
     }//GEN-LAST:event_btnTaoActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        String soPhieu = txtSoPhieu.getText();
-        String ngayNhap = txtNgayNhap.getText();
-        if (soPhieu.isEmpty() || ngayNhap.isEmpty() || txtGiaNhap.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
-            return;
-        }
-        if (txtMaNguyenLieu.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Hãy chọn 1 nguyên liệu tương ứng");
-            return;
-        }
-        double giaNhap = 0;
-        try {
-            giaNhap = Double.parseDouble(txtGiaNhap.getText());
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi nhập sai kiểu số " + ex.getMessage());
-            return;
-        }
-        if (giaNhap < 0) {
-            JOptionPane.showMessageDialog(null, "Giá nhập phải lớn hơn 0");
-            return;
-        }
-        int soLuong = Integer.parseInt(spnSoLuong.getValue().toString());
-        if (soLuong <= 0) {
-            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0");
-            return;
-        }
-        ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap(soPhieu, txtMaNguyenLieu.getText());
-        if (listCTPN.contains(ctpn)) {
-            JOptionPane.showMessageDialog(null, "Phiếu nhập đã chứa thông tin của nguyên liệu này");
-            return;
-        }
-        try {
-            // TODO add your handling code here:
-            int t = bll.insertChiTietPhieuNhap(soPhieu, txtMaNguyenLieu.getText(), soLuong, giaNhap);
-            txtMaNguyenLieu.setText("");
-            txtGiaNhap.setText("");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL " + ex.getMessage());
-        } catch (Exception ex) {
-            Logger.getLogger(frmQLPhieuNhap.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        String soPhieu = txtSoPhieu.getText();
+//        String ngayNhap = txtNgayNhap.getText();
+//        if (soPhieu.isEmpty() || ngayNhap.isEmpty() || txtGiaNhap.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+//            return;
+//        }
+//        if (txtMaNguyenLieu.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Hãy chọn 1 nguyên liệu tương ứng");
+//            return;
+//        }
+//        double giaNhap = 0;
+//        try {
+//            giaNhap = Double.parseDouble(txtGiaNhap.getText());
+//        } catch (NumberFormatException ex) {
+//            JOptionPane.showMessageDialog(null, "Lỗi nhập sai kiểu số " + ex.getMessage());
+//            return;
+//        }
+//        if (giaNhap < 0) {
+//            JOptionPane.showMessageDialog(null, "Giá nhập phải lớn hơn 0");
+//            return;
+//        }
+//        int soLuong = Integer.parseInt(spnSoLuong.getValue().toString());
+//        if (soLuong <= 0) {
+//            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0");
+//            return;
+//        }
+//        ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap(soPhieu, txtMaNguyenLieu.getText());
+//        if (listCTPN.contains(ctpn)) {
+//            JOptionPane.showMessageDialog(null, "Phiếu nhập đã chứa thông tin của nguyên liệu này");
+//            return;
+//        }
+//        try {
+//            // TODO add your handling code here:
+//            int t = bll.insertChiTietPhieuNhap(soPhieu, txtMaNguyenLieu.getText(), soLuong, giaNhap);
+//            txtMaNguyenLieu.setText("");
+//            txtGiaNhap.setText("");
+//
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL " + ex.getMessage());
+//        } catch (Exception ex) {
+//            Logger.getLogger(frmQLPhieuNhap.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        if (txtSoPhieu.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Hãy chọn 1 thông tin phiếu nhập để xóa");
-            return;
-        }
-        try {
-            int t = bll.deleteChiTietPhieuNhap(txtSoPhieu.getText(), txtMaNguyenLieu.getText());
-
-            resetText();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi truy vấn" + ex.getMessage());
-        }
+//        if (txtSoPhieu.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Hãy chọn 1 thông tin phiếu nhập để xóa");
+//            return;
+//        }
+//        try {
+//            int t = bll.deleteChiTietPhieuNhap(txtSoPhieu.getText(), txtMaNguyenLieu.getText());
+//
+//            resetText();
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(null, "Lỗi truy vấn" + ex.getMessage());
+//        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            int maNCC = bll.showMaCCTheoTen(cbxNhaCungCap.getSelectedItem().toString());
-            listPhieuNhap = bll.showPhieuNhapTheoMaNCC(maNCC);
-            tblChiTietPhieuNhap.setModel(new CustomTable_PhieuNhap(listPhieuNhap));
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi truy vấn " + ex.getMessage());
-        }
+//        try {
+//            // TODO add your handling code here:
+//            int maNCC = bll.showMaCCTheoTen(cbxNhaCungCap.getSelectedItem().toString());
+//            listPhieuNhap = bll.showPhieuNhapTheoMaNCC(maNCC);
+//            tblChiTietPhieuNhap.setModel(new CustomTable_PhieuNhap(listPhieuNhap));
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Lỗi truy vấn " + ex.getMessage());
+//        }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void lstNguyenLieuValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstNguyenLieuValueChanged
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            String maML = bll.showMaNLTheoTen(lstNguyenLieu.getSelectedValue().toString());
-            txtMaNguyenLieu.setText(maML);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi " + ex.getMessage());
-        }
+//        try {
+//            // TODO add your handling code here:
+//            String maML = bll.showMaNLTheoTen(lstNguyenLieu.getSelectedValue().toString());
+//            txtMaNguyenLieu.setText(maML);
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Lỗi " + ex.getMessage());
+//        }
     }//GEN-LAST:event_lstNguyenLieuValueChanged
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed

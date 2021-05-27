@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -21,7 +22,7 @@ public class NguyenLieu {
         this.tenNL = tenNL;
     }
 
-    public NguyenLieu(String maNL, String tenNL, int hanSD, String donViTinh) {
+    public NguyenLieu(String maNL, String tenNL, String donViTinh,  int hanSD) {
         this.maNL = maNL;
         this.tenNL = tenNL;
         this.hanSD = hanSD;
@@ -63,3 +64,5 @@ public class NguyenLieu {
     
     
 }
+
+
