@@ -55,13 +55,13 @@ public class CustomTableNL extends AbstractTableModel
         switch(columnIndex)
         {
             //Cột số a
-            case 0: return nl.get(rowIndex).getManl();
+            case 0: return nl.get(rowIndex).getMaNL();
             //Cột b
-            case 1: return nl.get(rowIndex).getTennl();
+            case 1: return nl.get(rowIndex).getTenNL();
             //cột c
-            case 2: return nl.get(rowIndex).getDonvitinh();
+            case 2: return nl.get(rowIndex).getDonViTinh();
             
-             case 3: return nl.get(rowIndex).getHansd();
+             case 3: return nl.get(rowIndex).getHanSD();
             //cột kq
             
             default :return null;

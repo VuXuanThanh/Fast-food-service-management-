@@ -1,80 +1,68 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package DTO;
 
-import java.util.Objects;
-
+/**
+ *
+ * @author Vu Xuan Thanh
+ */
 public class NguyenLieu {
-    private String manl, tennl, donvitinh;
-    private int hansd;
+    private String maNL, tenNL;
+    private int hanSD;
+    private String donViTinh;
 
     public NguyenLieu() {
     }
 
-    public NguyenLieu(String manl, String tennl, String donvitinh, int hansd) {
-        this.manl = manl;
-        this.tennl = tennl;
-        this.donvitinh = donvitinh;
-        this.hansd = hansd;
+    public NguyenLieu(String tenNL) {
+        this.tenNL = tenNL;
     }
 
-    public NguyenLieu(String manl) {
-        this.manl = manl;
+    public NguyenLieu(String maNL, String tenNL, String donViTinh,  int hanSD) {
+        this.maNL = maNL;
+        this.tenNL = tenNL;
+        this.hanSD = hanSD;
+        this.donViTinh = donViTinh;
     }
 
-    public String getManl() {
-        return manl;
+    public String getMaNL() {
+        return maNL;
     }
 
-    public String getTennl() {
-        return tennl;
+    public void setMaNL(String maNL) {
+        this.maNL = maNL;
     }
 
-    public String getDonvitinh() {
-        return donvitinh;
+    public String getTenNL() {
+        return tenNL;
     }
 
-    public int getHansd() {
-        return hansd;
+    public void setTenNL(String tenNL) {
+        this.tenNL = tenNL;
     }
 
-    public void setManl(String manl) {
-        this.manl = manl;
+    public int getHanSD() {
+        return hanSD;
     }
 
-    public void setTennl(String tennl) {
-        this.tennl = tennl;
+    public void setHanSD(int hanSD) {
+        this.hanSD = hanSD;
     }
 
-    public void setDonvitinh(String donvitinh) {
-        this.donvitinh = donvitinh;
+    public String getDonViTinh() {
+        return donViTinh;
     }
 
-    public void setHansd(int hansd) {
-        this.hansd = hansd;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + Objects.hashCode(this.manl);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final NguyenLieu other = (NguyenLieu) obj;
-        if (!Objects.equals(this.manl, other.manl)) {
-            return false;
-        }
-        return true;
+    public void setDonViTinh(String donViTinh) {
+        this.donViTinh = donViTinh;
     }
     
+    
+    
 }
+
+

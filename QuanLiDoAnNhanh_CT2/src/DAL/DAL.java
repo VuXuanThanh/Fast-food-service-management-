@@ -1,6 +1,7 @@
 package DAL;
 
 
+import DTO.ChiTietPhieuNhap;
 import DTO.TaiKhoan;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,9 +20,11 @@ import java.util.logging.Logger;
 /**
  *
  * @author Vu Xuan Thanh
+ * add for Phạm Trung Thế
  */
 public class DAL {
 
+    // push code từ branch VuXuanThanh
     Connection con = null;
     Statement sta = null;
     ResultSet res = null;
@@ -92,23 +95,29 @@ public class DAL {
 //        kq=st.executeQuery("select * from HCN");
 //        return kq;
 //    }
-    public ArrayList getData(String sql) {
-        ArrayList<TaiKhoan> ds = new ArrayList<>();
+    public void doSQL(String sql)  {
         try {
-            sta = getStatement();
-            res = executeQuery(sql);
-
-            while (res.next()) {
-                TaiKhoan sv = new TaiKhoan(res.getInt(1),
-                       res.getString(2), res.getString(3), res.getInt(4));
-                ds.add(sv);
-            }
-
-        } catch (Exception ex) {
-            System.out.println("loi getData " + ex.toString());
+            sta = con.createStatement();
+            sta.execute(sql);
+        } catch (SQLException ex) {
+            System.out.println(" khong thuc hien dc cau lẹnh sql\n"+sql);
+        }
+        
+    }
+     public ArrayList getDataCTPN(String sql)  {
+        ArrayList<ChiTietPhieuNhap> ds = new ArrayList<>();
+        try {
+                sta = con.createStatement();
+                res = sta.executeQuery(sql);
+                while (res.next()) {
+                    ChiTietPhieuNhap sv = new ChiTietPhieuNhap(res.getString(1), 
+                            res.getString(2), res.getInt(3), res.getDouble(4));
+                    ds.add(sv);                        
+                }                                
+        } catch (Exception ex) {           
+            System.out.println("loi getData "+ ex.toString());
             return null;
         }
         return ds;
-    }
-
+    }  
 }
