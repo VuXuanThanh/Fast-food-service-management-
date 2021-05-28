@@ -224,8 +224,14 @@ public class frmThemNhanVien extends javax.swing.JFrame {
             nv.setNgaySinh(txtNgaySinh.getText());
             nv.setDiaChi(txtDiaChi.getText());
             nv.setSoDT(txtSoDT.getText());
+            nv.setTenTK(txtMaNhanVien.getText());
+            bll.themTaiKhoanNhanVien(txtMaNhanVien.getText(), "MK"+txtMaNhanVien.getText(), 1);
+          //  bll.themnv(nv);
             
-            bll.themnv(nv);
+            bll.themNhanVien(nv);
+            JOptionPane.showMessageDialog(null, "Thêm thành công");
+         //   new frmQuanLyNhanVien().setVisible(true);
+         
         }
         catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -237,8 +243,8 @@ public class frmThemNhanVien extends javax.swing.JFrame {
 
     private void txtHuyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHuyBoActionPerformed
         
-        new frmQuanLyNhanVien().setVisible(true);
         this.setVisible(false);
+        new frmQuanLyNhanVien().setVisible(true);
         
     }//GEN-LAST:event_txtHuyBoActionPerformed
 

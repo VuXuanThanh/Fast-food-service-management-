@@ -26,16 +26,16 @@ public class frmQuanLyNhanVien extends javax.swing.JFrame {
     
      BLL bll = new  BLL();
      
-    public static ArrayList<NhanVien> list = new ArrayList<>();
+    public  ArrayList<NhanVien> list = new ArrayList<>();
     public static NhanVien NVsua = new NhanVien();
     int selectedRow = 0;
     public frmQuanLyNhanVien() {
        initComponents();
        setLocationRelativeTo(null);
-       list=bll.bangNhanVien();
-       tblQLNV.setModel(new CustomTableQLNV(list));
-        //loadTable();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//       list=bll.bangNhanVien();
+      // tblQLNV.setModel(new CustomTableQLNV(list));
+        loadTable();
+    //    setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /**
@@ -178,8 +178,8 @@ public class frmQuanLyNhanVien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        new frmThemNhanVien().setVisible(true);
         this.setVisible(false);
+        new frmThemNhanVien().setVisible(true);
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -235,7 +235,8 @@ public class frmQuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQuayActionPerformed
     public void loadTable()
     {
-        list = bll.bangNhanVien();
+        list = bll.showNV();
+        
         tblQLNV.setModel(new CustomTableQLNV(list));
     }
     /**

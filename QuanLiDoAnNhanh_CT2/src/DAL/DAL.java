@@ -31,9 +31,9 @@ public class DAL {
     Statement sta = null;
     ResultSet res = null;
 
-    String url = "jdbc:derby://localhost:1527/QLDoAN";
-    String user = "thanh";
-    String pass = "123456";
+    String url = "jdbc:derby://localhost:1527/QuanLiDoAn";
+    String user = "THANH";
+    String pass = "123";
 
     public DAL() {
         try {
@@ -149,7 +149,7 @@ public class DAL {
             res = executeQuery(sql);
 
             while (res.next()) {
-                NhanVien nv = new NhanVien( res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getDate(5).toString(), res.getString(6), res.getString(7));
+                NhanVien nv = new NhanVien( res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getDate(5).toString(), res.getString(6),res.getString(7), res.getString(8));
                 ds.add(nv);
             }
         } catch (Exception ex) {

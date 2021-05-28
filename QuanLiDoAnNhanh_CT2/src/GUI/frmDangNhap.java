@@ -5,7 +5,6 @@
  */
 package GUI;
 
-
 import DTO.TaiKhoan;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -13,7 +12,6 @@ import BLL.BLL;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  *
@@ -30,6 +28,7 @@ public class frmDangNhap extends javax.swing.JFrame {
     public static int quyen;
     //Nguyen Tuan Thanh thêm
     public static String tk;
+
     //
     public frmDangNhap() {
         initComponents();
@@ -37,13 +36,16 @@ public class frmDangNhap extends javax.swing.JFrame {
         load();
 
     }
-    public void load(){
-        
+
+    public void load() {
+
     }
-    public void getData(){
-      
+
+    public void getData() {
+
         load();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -173,52 +175,45 @@ public class frmDangNhap extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         String tenTaiKhoan = txtUserName.getText();
-     
+
         String matKhau = txtPassword.getText();
-         //Nguyen tuan thanh thêm
-        tk = txtUserName.getText(); 
+        //Nguyen tuan thanh thêm
+        tk = txtUserName.getText();
         //
-        
-        if(tenTaiKhoan.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập tên đăng nhập hợp lệ");
-            txtUserName.requestFocus();
-            return;
-        }
-        if(txtPassword.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập mật khẩu hợp lệ");
-            txtPassword.requestFocus();
-            return;
-        }
         try {
+            if (tenTaiKhoan.isEmpty() || matKhau.isEmpty()) {
+                throw new NullPointerException("Vui lòng điền tên và mật khẩu");
+            }
             listTK = bll.showTaiKhoan();
-        } catch (SQLException ex) {
-            Logger.getLogger(frmDangNhap.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        TaiKhoan tk = new TaiKhoan(tenTaiKhoan, matKhau);
-        if(!listTK.contains(tk)){
-            JOptionPane.showMessageDialog(null, "Vui lòng kiểm tra tên hoặc mật khẩu");
-            return;
-        }
-        TaiKhoan quyen = new TaiKhoan();
+            TaiKhoan tk = new TaiKhoan(tenTaiKhoan, matKhau);
+            if (!listTK.contains(tk)) {
+                JOptionPane.showMessageDialog(null, "Vui lòng kiểm tra tên hoặc mật khẩu");
+                return;
+            }
+            TaiKhoan quyen = new TaiKhoan();
             quyen = listTK.get(listTK.indexOf(tk));
-        tenTKDN = "Xin chào " +quyen.getTenTaiKhoan();
-        
-        //Tuan Thanh sua quyen lai = 0,  0 la admin;
-        if(quyen.getQuyen()==0){
-           
-            new frmMain().setVisible(true);
+            tenTKDN = "Xin chào " + quyen.getTenTaiKhoan();
+
+            //Tuan Thanh sua quyen lai = 0,  0 la admin;
+            if (quyen.getQuyen() == 0) {
+
+                new frmMain().setVisible(true);
+                this.setVisible(false);
+            } else {
+
+                new frmMainNhanVien().setVisible(true);
+            }
             this.setVisible(false);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL");
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        else{
-            
-              new frmMainNhanVien().setVisible(true);
-        }      
-        this.setVisible(false);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResetActionPerformed
         // TODO add your handling code here:
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_txtResetActionPerformed
 
     /**
