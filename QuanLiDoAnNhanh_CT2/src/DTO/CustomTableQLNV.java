@@ -13,8 +13,8 @@ import javax.swing.table.AbstractTableModel;
  * @author nguye
  */
 public class CustomTableQLNV extends AbstractTableModel{
-    private String name[] = {"Mã nhân viên", "Tên nhân viên", "Giới tính", "Số CMND", "Ngày sinh", "Địa chỉ", "Số ĐT"};
-    private Class classes[] = {String.class, String.class, String.class, String.class, String.class, String.class, String.class};
+    private String name[] = {"Mã nhân viên", "Tên nhân viên", "Giới tính", "Số CMND", "Ngày sinh", "Địa chỉ","Ten tai khoan", "Số ĐT"};
+    private Class classes[] = {String.class, String.class, String.class, String.class, String.class, String.class,String.class, String.class};
     
     ArrayList<NhanVien> listNV = new ArrayList<NhanVien>();
 
@@ -58,8 +58,8 @@ public class CustomTableQLNV extends AbstractTableModel{
             case 3: return listNV.get(rowIndex).getSoCMND();
             case 4: return listNV.get(rowIndex).getNgaySinh();
             case 5: return listNV.get(rowIndex).getDiaChi();
-            case 6: return listNV.get(rowIndex).getSoDT();
-
+            case 6: return listNV.get(rowIndex).getTenTK();
+            case 7: return listNV.get(rowIndex).getSoDT();
             default: return null;
         }
     }

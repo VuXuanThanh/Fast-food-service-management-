@@ -108,17 +108,17 @@ public class frmTimKiemNhanVien extends javax.swing.JFrame {
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
       
-       String masv = txtMaNhanVien.getText();
-       int d = 0;
-       for(NhanVien i:frmQuanLyNhanVien.list){
-           if(masv.equals(i.getMaNhanVien())){
-               d++;
-               JOptionPane.showConfirmDialog(null, i.toString());
-           }
-       }
-       if(d==0){
-           JOptionPane.showConfirmDialog(null, "Không tìm thấy nhân viên!!!", "Warning", JOptionPane.OK_OPTION);
-       }
+//       String masv = txtMaNhanVien.getText();
+//       int d = 0;
+//       for(NhanVien i:frmQuanLyNhanVien.list){
+//           if(masv.equals(i.getMaNhanVien())){
+//               d++;
+//               JOptionPane.showConfirmDialog(null, i.toString());
+//           }
+//       }
+//       if(d==0){
+//           JOptionPane.showConfirmDialog(null, "Không tìm thấy nhân viên!!!", "Warning", JOptionPane.OK_OPTION);
+//       }
        
     }//GEN-LAST:event_btnOKActionPerformed
 

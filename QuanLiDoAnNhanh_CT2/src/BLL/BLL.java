@@ -491,7 +491,7 @@ public class BLL {
     }
 
      //nguyen tuan thanh
-    public void themnv(NhanVien nv) throws Exception
+  public void themnv(NhanVien nv) throws Exception
     {
        String sql = "Insert into NHANVIEN values('"+nv.getMaNhanVien()+"', '"+nv.getHoTen()+"', '"+nv.getGioiTinh()+"', '"+
                nv.getSoCMND()+"', '"+nv.getNgaySinh()+"', '"+nv.getDiaChi()+"', '"+nv.getSoDT()+"' )";   
@@ -546,4 +546,37 @@ public class BLL {
        return ds;
    }
    
+   // update code Tuấn Thành
+//    public void themnv1(String maNV, String tenNV, String gioiTinh,
+//            String cmnd, String ngay, String diachi, String tenTK, String soDT) 
+//    {
+//        String sql ="insert into nhanvien values('"+maNV+"', '"+tenNV+"', '"+gioiTinh+"', "
+//                + "'"+cmnd+"', date('"+ngay+"'), '"+diachi+"', '"+tenTK+"', '"+soDT+"')";
+//        dal.doSQL(sql);
+//    }
+     public void themNhanVien(NhanVien nv) throws Exception
+    {
+       String sql = "Insert into NHANVIEN values('"+nv.getMaNhanVien()+"', '"+nv.getHoTen()+"', '"+nv.getGioiTinh()+"', '"+
+               nv.getSoCMND()+"', '"+nv.getNgaySinh()+"', '"+nv.getDiaChi()+"', '"+nv.getMaNhanVien()+"', '"+nv.getSoDT()+"' )";   
+       dal.doSQL(sql);
+    }
+     public void themTaiKhoanNhanVien(String tenTK, String matKhau, int quyen){
+         String sql = "insert into taikhoan values ('"+tenTK+"', '"+matKhau+"', "+quyen+")";   
+        dal.doSQL(sql);
+     }
+     public ArrayList<NhanVien> showNV(){
+        ArrayList<NhanVien> ds = new ArrayList<>();
+        String sql = "select * from nhanvien";  
+        ResultSet res = dal.getResultSet(sql);
+        try {
+            while(res.next()){
+                NhanVien dm = new NhanVien(res.getString(1),
+                        res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8));
+                ds.add(dm);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ds;
+    }
 }

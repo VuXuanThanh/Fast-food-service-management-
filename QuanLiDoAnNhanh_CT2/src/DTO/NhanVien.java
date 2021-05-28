@@ -16,19 +16,20 @@ public class NhanVien extends Nguoi{
     private String gioiTinh;
     private String soCMND;
     private String ngaySinh;
-   
+    private String tenTK;
     
     public NhanVien()
     {
                
     }
 
-    public NhanVien(String maNhanVien, String hoTen, String gioiTinh, String soCMND, String ngaySinh, String diaChi, String soDT) {
+    public NhanVien(String maNhanVien, String hoTen, String gioiTinh, String soCMND, String ngaySinh, String diaChi, String tenTK, String soDT) {
         super(hoTen, soDT, diaChi);
         this.maNhanVien = maNhanVien;
         this.gioiTinh = gioiTinh;
         this.soCMND = soCMND;
-        this.ngaySinh = ngaySinh;     
+        this.ngaySinh = ngaySinh;   
+        this.tenTK= tenTK;
     }
 
     @Override
@@ -95,6 +96,15 @@ public class NhanVien extends Nguoi{
         return "Nhân viên: " + "Tên = " + hoTen + ", Giới tính = " + gioiTinh + ", Số CMND = " + soCMND + ", Ngày Sinh = " + ngaySinh + ", Số ĐT =" +soDT+", Địa chỉ ="+diaChi+"}";
     }
 
+    public String getTenTK() {
+        return tenTK;
+    }
+
+    public void setTenTK(String tenTK) {
+        this.tenTK = tenTK;
+    }
+
+    
  
 
 

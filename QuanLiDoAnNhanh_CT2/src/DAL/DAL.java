@@ -149,7 +149,7 @@ public class DAL {
             res = executeQuery(sql);
 
             while (res.next()) {
-                NhanVien nv = new NhanVien( res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getDate(5).toString(), res.getString(6), res.getString(7));
+                NhanVien nv = new NhanVien( res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getDate(5).toString(), res.getString(6),res.getString(7), res.getString(8));
                 ds.add(nv);
             }
         } catch (Exception ex) {
