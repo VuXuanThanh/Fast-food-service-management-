@@ -5,6 +5,7 @@
  */
 package DTO;
 
+import BLL.BLL;
 import java.util.Objects;
 
 /**
@@ -81,6 +82,10 @@ public class DoAn {
         this.gia = gia;
     }
 
+    public String getTenDM(){
+        BLL bll = new BLL();
+        return bll.getTenDM(maDM);
+    }
     @Override
     public int hashCode() {
         int hash = 7;
@@ -105,7 +110,4 @@ public class DoAn {
         }
         return true;
     }
-    
-    
-    
 }

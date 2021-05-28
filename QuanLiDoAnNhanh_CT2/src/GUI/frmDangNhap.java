@@ -25,6 +25,7 @@ public class frmDangNhap extends javax.swing.JFrame {
     BLL bll = new BLL();
     ArrayList<TaiKhoan> listTK = new ArrayList<>();
     public static String tenTKDN;
+    public static String tenTK;
     public static int quyen;
     //Nguyen Tuan Thanh thêm
     public static String tk;
@@ -192,17 +193,19 @@ public class frmDangNhap extends javax.swing.JFrame {
             }
             TaiKhoan quyen = new TaiKhoan();
             quyen = listTK.get(listTK.indexOf(tk));
+
             tenTKDN = "Xin chào " + quyen.getTenTaiKhoan();
+            tenTK = quyen.getTenTaiKhoan();
 
             //Tuan Thanh sua quyen lai = 0,  0 la admin;
             if (quyen.getQuyen() == 0) {
 
                 new frmMain().setVisible(true);
-                this.setVisible(false);
             } else {
 
                 new frmMainNhanVien().setVisible(true);
             }
+
             this.setVisible(false);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL");

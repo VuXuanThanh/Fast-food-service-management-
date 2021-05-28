@@ -5,6 +5,13 @@
  */
 package DTO;
 
+import BLL.BLL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Vu Xuan Thanh
@@ -17,7 +24,7 @@ public class ChiTietHoaDon {
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(String maHD, int maMon, int soLuong, double gia) {
+    public ChiTietHoaDon(String maHD, int maMon, int soLuong,double gia) {
         this.maHD = maHD;
         this.maMon = maMon;
         this.soLuong = soLuong;
@@ -47,6 +54,22 @@ public class ChiTietHoaDon {
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
     }
+    
+    public DoAn getDoAn(){
+        BLL bll = new BLL();
+        ArrayList<DoAn> listDoAn = new ArrayList<>();
+        String dK = "mamon = "+maMon+"";
+        listDoAn = bll.showDoAnTheoDK(dK);
+        return listDoAn.get(0);
+    }
+    
+    public String getTenMon(){
+        return getDoAn().getTenMon();
+    }
+    
+    public String getDonViTinh(){
+        return getDoAn().getDonViTinh();
+    }
 
     public double getGia() {
         return gia;
@@ -55,8 +78,10 @@ public class ChiTietHoaDon {
     public void setGia(double gia) {
         this.gia = gia;
     }
+    
+    
     public double thanhTien(){
+        double gia = getDoAn().getGia();
         return gia*soLuong;
     }
-
 }
