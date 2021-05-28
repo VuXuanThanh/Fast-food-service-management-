@@ -6,16 +6,19 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DAL.DAL;
+import DTO.ChiTietHoaDon;
 import DTO.ChiTietPhieuNhap;
 import DTO.DanhMuc;
 import DTO.DoAn;
 import DTO.HoaDon;
+import DTO.KhachHang;
 import DTO.Luong;
 import DTO.NguyenLieu;
 import DTO.NhaCungCap;
 import DTO.NhanVien;
 import DTO.PhieuNhap;
 import DTO.TaiKhoan;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -546,4 +549,188 @@ public class BLL {
        return ds;
    }
    
+//   Phạm Trung Thế
+//    Các phương thức đặt đồ ăn
+    public ArrayList<KhachHang> showKhachHangTheoDK(String dK){
+        ArrayList<KhachHang> ds = new ArrayList<>();
+        ResultSet res = null;
+        String sql = "select * from khachhang where "+dK+"";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                KhachHang item = new KhachHang(res.getString(1), 
+                        res.getString(2),res.getString(3));
+                ds.add(item);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return ds;
+    }
+    
+    public ArrayList<ChiTietHoaDon> showChiTietHoaDon(String maHD){
+        ArrayList<ChiTietHoaDon> ds = new ArrayList<>();
+        ResultSet res = null;
+        String sql = "select * from chitiethoadon where mahd = '"+maHD+"'";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                ChiTietHoaDon item = new ChiTietHoaDon(res.getString(1), res.getInt(2),res.getInt(3));
+                ds.add(item);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return ds;
+    }
+    
+    public ArrayList<DanhMuc> showDanhMuc(){
+        ArrayList<DanhMuc> ds = new ArrayList<>();
+        ResultSet res = null;
+        String sql = "select * from danhmuc";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                DanhMuc dm = new DanhMuc(res.getInt(1),res.getString(2));
+                ds.add(dm);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return ds;
+    }
+    
+    public String getTenDM(int madm){
+        String kp = "";
+        ResultSet res = null;
+        String sql = "select tendm from danhmuc where madm =" + madm + "";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                kp = res.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return kp;
+    }
+    
+    public ArrayList<DoAn> showDoAnTheoDK(String dK){
+        ArrayList<DoAn> ds = new ArrayList<>();
+        ResultSet res = null;
+        String sql = "select * from doan where "+dK+"";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                DoAn item = new DoAn(res.getInt(1), res.getString(2), res.getString(3),
+                        res.getString(4), res.getInt(5), res.getDouble(6));
+                ds.add(item);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return ds;
+    }
+    
+    public int insertKhachHang(String hoTen, String soDT, String diaChi){
+        String sql ="insert into khachhang values ('"+soDT+"', '"+hoTen+"', '"+diaChi+"')";
+        int t = 0;
+        try {
+            t = dal.getStatement().executeUpdate(sql);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return t;
+    }
+    
+    public int getSoKhachHang (String soDT){
+        int d=0;
+        String sql = "select count(*) from khachhang where sodt ='" + soDT + "'";
+        ResultSet res = null;
+        res = dal.getResultSet(sql);
+        try {
+            d=res.getInt(1);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return d;
+    }
+    
+    public int insertHoaDon(String maHD, String maNV, String ngayXuat, String thoiGian,String soDT){
+            String sql ="insert into hoadon values ('"+maHD+"', '"+maNV+"', '"
+                    +ngayXuat+"', '"+thoiGian+"', '"+soDT+"')";
+        int t = 0;
+        try {
+            t = dal.getStatement().executeUpdate(sql);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return t;
+    }
+    
+    public void insertChiTietHoaDon(String maHD, int maMon, int soLuong){
+            String sql ="insert into chitiethoadon values ('"+maHD+"', "+maMon+", "
+                    +soLuong+")";
+        try {
+            int t = 0;
+            t = dal.getStatement().executeUpdate(sql);
+            if(t==0){
+                throw new Exception("Không thêm được vào CSDL");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+//    Các phương thức xem thông tin hóa đơn
+        public ArrayList<HoaDon> showHoaDon(){
+        ArrayList<HoaDon> ds = new ArrayList<>();
+        ResultSet res = null;
+        String sql = "select * from hoadon";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                HoaDon item = new HoaDon(res.getString(1), 
+                        res.getString(2),res.getDate(3), res.getTime(4),
+                        res.getString(5));
+                ds.add(item);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return ds;
+    }
+    
+    public String getTenNV(String maNV){
+        String kp = "";
+        ResultSet res = null;
+        String sql = "select tennhanvien from nhanvien where manhanvien ='" + maNV + "'";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                kp = res.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return kp;
+    }
+    
+    public ArrayList<HoaDon> showHoaDonTheoDK(String dK){
+        ArrayList<HoaDon> ds = new ArrayList<>();
+        ResultSet res = null;
+        String sql = "select * from hoadon where "+dK+"";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                HoaDon item = new HoaDon(res.getString(1), 
+                        res.getString(2),res.getDate(3), res.getTime(4),
+                        res.getString(5));
+                ds.add(item);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return ds;
+    }
 }

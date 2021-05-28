@@ -5,8 +5,11 @@
  */
 package DTO;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import BLL.BLL;
+import java.sql.Time;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -15,33 +18,22 @@ import java.util.Date;
  */
 public class HoaDon {
     private String maHD;
-    private int maNV;
+    private String maNV;
     private Date ngayXuat;
+    private Time thoiGian;
     private KhachHang khachHang;
-    
     private double tongTien;
     
-    
-    public static void main(String[] args) {
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
-//        LocalDateTime now = LocalDateTime.now();  
-//       System.out.println(dtf.format(now).toString());  
-//            double randomDouble = Math.random();
-//            randomDouble = randomDouble * 100000 + 1;
-//            int randomInt = (int) randomDouble;
-//            System.out.println("Random number is : " + randomInt);
-    }
-
     public HoaDon() {
     }
 
-    public HoaDon(String maHD, int maNV, Date ngayXuat) {
+    public HoaDon(String maHD, String maNV, Date ngayXuat) {
         this.maHD = maHD;
         this.maNV = maNV;
         this.ngayXuat = ngayXuat;
     }
 
-    public HoaDon(String maHD, int maNV, Date ngayXuat, KhachHang khachHang) {
+    public HoaDon(String maHD, String maNV, Date ngayXuat, KhachHang khachHang) {
         this.maHD = maHD;
         this.maNV = maNV;
         this.ngayXuat = ngayXuat;
@@ -54,6 +46,24 @@ public class HoaDon {
         this.tongTien = tongTien;
     }
 
+    public HoaDon(String maHD, String maNV, Date ngayXuat, Time thoiGian, String khachHang) {
+        this.maHD = maHD;
+        this.maNV = maNV;
+        this.ngayXuat = ngayXuat;
+        this.thoiGian = thoiGian;
+        BLL bll = new BLL();
+        String dK = "sodt = '"+ khachHang+"'";
+        this.khachHang = bll.showKhachHangTheoDK(dK).get(0);
+    }
+    
+    public void setMaHD(int so) {
+        DecimalFormat dingDangHD = new DecimalFormat("0000");
+        SimpleDateFormat sdfNgay = new SimpleDateFormat("ddMMyy");
+        Date d = new Date();
+        
+        this.maHD = "HD"+sdfNgay.format(d)+"-"+dingDangHD.format(so);
+    }
+
     public String getMaHD() {
         return maHD;
     }
@@ -62,29 +72,51 @@ public class HoaDon {
         this.maHD = maHD;
     }
 
-    public int getMaNV() {
+    public String getMaNV() {
         return maNV;
     }
 
-    public void setMaNV(int maNV) {
+    public void setMaNV(String maNV) {
         this.maNV = maNV;
     }
 
-    public Date getNgayXuat() {
-        return ngayXuat;
+    public String getNgayXuat() {
+        SimpleDateFormat sdfNgay = new SimpleDateFormat("yyyy-MM-dd");
+        return sdfNgay.format(ngayXuat);
     }
 
     public void setNgayXuat(Date ngayXuat) {
         this.ngayXuat = ngayXuat;
     }
 
-    public double getTongTien() {
-        return tongTien;
+    public String getThoiGian() {
+        SimpleDateFormat sdfGio = new SimpleDateFormat("HH:mm:ss");
+        return sdfGio.format(thoiGian);
     }
 
-    public void setTongTien(double tongTien) {
-        this.tongTien = tongTien;
+    public void setThoiGian(Time thoiGian) {
+        this.thoiGian = thoiGian;
     }
-    
-    
+
+    public KhachHang getKhachHang() {
+        return khachHang;
+    }
+
+    public void setKhachHang(KhachHang khachHang) {
+        this.khachHang = khachHang;
+    }
+
+    public double getTongTien() {
+        tongTien =0;
+        BLL bll = new BLL();
+        ArrayList<ChiTietHoaDon> listCTHD = new ArrayList<>();
+        listCTHD = bll.showChiTietHoaDon(maHD);
+        listCTHD.forEach((t) -> {
+            tongTien+= (t.getSoLuong()*t.getDoAn().getGia());
+        });
+        if(!khachHang.soDT.equalsIgnoreCase("Khách lẻ")){
+            tongTien+= 5000;
+        }
+        return tongTien;
+    }
 }
