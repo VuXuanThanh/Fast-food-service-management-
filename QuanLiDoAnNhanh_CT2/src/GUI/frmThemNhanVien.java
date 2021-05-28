@@ -224,13 +224,13 @@ public class frmThemNhanVien extends javax.swing.JFrame {
             nv.setNgaySinh(txtNgaySinh.getText());
             nv.setDiaChi(txtDiaChi.getText());
             nv.setSoDT(txtSoDT.getText());
+            
             nv.setTenTK(txtMaNhanVien.getText());
             bll.themTaiKhoanNhanVien(txtMaNhanVien.getText(), "MK"+txtMaNhanVien.getText(), 1);
-          //  bll.themnv(nv);
             
             bll.themNhanVien(nv);
             JOptionPane.showMessageDialog(null, "Thêm thành công");
-         //   new frmQuanLyNhanVien().setVisible(true);
+         
          
         }
         catch (NullPointerException e) {

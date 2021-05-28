@@ -31,9 +31,9 @@ public class DAL {
     Statement sta = null;
     ResultSet res = null;
 
-    String url = "jdbc:derby://localhost:1527/QuanLiDoAn";
-    String user = "THANH";
-    String pass = "123";
+    String url = "jdbc:derby://localhost:1527/QLDoAN";
+    String user = "thanh";
+    String pass = "123456";
 
     public DAL() {
         try {
@@ -123,7 +123,7 @@ public class DAL {
         return ds;
     }  
     
-     //Nguyen Tuan Thanh
+     //Nguyen Tuan Thanh (Error)
      public ArrayList<Luong> getDataLuong(String sql) {
         ArrayList<Luong> ds = new ArrayList<>();
         try{

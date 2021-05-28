@@ -104,6 +104,10 @@ public class NhanVien extends Nguoi{
         this.tenTK = tenTK;
     }
 
+    public NhanVien(String maNhanVien) {
+        this.maNhanVien = maNhanVien;
+    }
+
     
  
 

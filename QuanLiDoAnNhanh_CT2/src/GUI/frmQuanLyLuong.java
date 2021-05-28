@@ -8,11 +8,13 @@ package GUI;
 import BLL.BLL;
 import DTO.CustomTableQLLUONG;
 import DTO.Luong;
+import DTO.NhanVien;
 import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,7 +30,7 @@ public class frmQuanLyLuong extends javax.swing.JFrame {
     /**
      * Creates new form frmQuanLyLuong
      */
-    
+    ArrayList<NhanVien> listNV = new ArrayList<NhanVien>();
     ArrayList<Luong> list = new ArrayList<Luong>();
     public frmQuanLyLuong() {
         initComponents();
@@ -196,19 +198,25 @@ public class frmQuanLyLuong extends javax.swing.JFrame {
     }//GEN-LAST:event_tblLuongMouseClicked
 
     private void btnTinhLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTinhLuongActionPerformed
+        try{
+        listNV=bll.showNV();
         maLuong = txtMaLuong.getText();
-        
         Thang = Integer.parseInt(txtThang.getText());
         maNhanVien = txtMaNhanVien.getText();
+        NhanVien nv = new NhanVien(maNhanVien);
+        if (listNV.contains(nv) == false )
+        {
+            throw new Exception( "Không có nhân viên này!!");
+        }
         soGioLam = Integer.parseInt(txtSoGioLam.getText());
         list.add(new Luong(maLuong, Thang, maNhanVien, soGioLam));
-        try{
+        
 
             bll.tinhLuong(new Luong(maLuong, Thang, maNhanVien, soGioLam));
         }
         catch(Exception ex)
         {
-            Logger.getLogger(frmQuanLyLuong.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane,ex.getMessage());
         }
         loadTable();
     }//GEN-LAST:event_btnTinhLuongActionPerformed

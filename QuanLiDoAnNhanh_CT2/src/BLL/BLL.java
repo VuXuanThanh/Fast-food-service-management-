@@ -490,7 +490,7 @@ public class BLL {
         return t;
     }
 
-     //nguyen tuan thanh
+     //nguyen tuan thanh (Error)
   public void themnv(NhanVien nv) throws Exception
     {
        String sql = "Insert into NHANVIEN values('"+nv.getMaNhanVien()+"', '"+nv.getHoTen()+"', '"+nv.getGioiTinh()+"', '"+
@@ -512,11 +512,12 @@ public class BLL {
     
     public void xoanv(String maNhanVien) throws Exception
     {
-        String sql = "Delete from TAIKHOAN where TENTAIKHOAN = '"+maNhanVien+"'";
+        String sql = "Delete from NHANVIEN where MANHANVIEN = '"+maNhanVien+"'";
         dal.doSQL(sql);
         
-        sql = "Delete from NHANVIEN where MANHANVIEN = '"+maNhanVien+"'";
+        sql = "Delete from TAIKHOAN where TENTAIKHOAN = '"+maNhanVien+"'";
         dal.doSQL(sql);
+        
     }
     
    public void tinhLuong(Luong l) throws Exception
@@ -554,16 +555,27 @@ public class BLL {
 //                + "'"+cmnd+"', date('"+ngay+"'), '"+diachi+"', '"+tenTK+"', '"+soDT+"')";
 //        dal.doSQL(sql);
 //    }
+   //Nguyen Tuan Thanh lam lai
      public void themNhanVien(NhanVien nv) throws Exception
     {
        String sql = "Insert into NHANVIEN values('"+nv.getMaNhanVien()+"', '"+nv.getHoTen()+"', '"+nv.getGioiTinh()+"', '"+
                nv.getSoCMND()+"', '"+nv.getNgaySinh()+"', '"+nv.getDiaChi()+"', '"+nv.getMaNhanVien()+"', '"+nv.getSoDT()+"' )";   
        dal.doSQL(sql);
     }
+     
+     public void suaNhanVien(NhanVien nv) throws Exception
+     {
+         String sql = "Update NHANVIEN set TENNHANVIEN = '"+nv.getHoTen()+"', GIOITINH ='"+nv.getGioiTinh()+"', "
+                 + "SOCMND='"+nv.getSoCMND()+"', NGAYSINH='"+nv.getNgaySinh()+"', DIACHI='"+nv.getDiaChi()+"', TENTAIKHOAN ='"+nv.getMaNhanVien()+"', SODT='"+nv.getSoDT()+"' where MANHANVIEN = '"+nv.getMaNhanVien()+"'";
+        dal.doSQL(sql);
+     } 
+            
+     
      public void themTaiKhoanNhanVien(String tenTK, String matKhau, int quyen){
          String sql = "insert into taikhoan values ('"+tenTK+"', '"+matKhau+"', "+quyen+")";   
         dal.doSQL(sql);
      }
+     
      public ArrayList<NhanVien> showNV(){
         ArrayList<NhanVien> ds = new ArrayList<>();
         String sql = "select * from nhanvien";  
@@ -579,4 +591,5 @@ public class BLL {
         }
         return ds;
     }
+     //
 }

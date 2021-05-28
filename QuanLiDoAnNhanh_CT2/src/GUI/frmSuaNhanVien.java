@@ -25,7 +25,7 @@ public class frmSuaNhanVien extends javax.swing.JFrame {
         setLocationRelativeTo(null);  
         
         NhanVien nv = new NhanVien();
-              nv= frmQuanLyNhanVien.NVsua;
+        nv= frmQuanLyNhanVien.NVsua;
         
         txtMaNhanVien.setText(nv.getMaNhanVien());
         txtTenNhanVien.setText(nv.getHoTen());
@@ -71,6 +71,7 @@ public class frmSuaNhanVien extends javax.swing.JFrame {
         setTitle("Sửa thông tin nhân viên");
         setResizable(false);
 
+        txtMaNhanVien.setDisabledTextColor(new java.awt.Color(153, 153, 153));
         txtMaNhanVien.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -91,7 +92,11 @@ public class frmSuaNhanVien extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Nhân viên");
 
+        txtNgaySinh.setEditable(false);
+        txtNgaySinh.setDisabledTextColor(new java.awt.Color(153, 153, 153));
+
         txtSoCMND.setEditable(false);
+        txtSoCMND.setDisabledTextColor(new java.awt.Color(153, 153, 153));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Số CMND");
@@ -228,7 +233,8 @@ public class frmSuaNhanVien extends javax.swing.JFrame {
 
         try
         {
-            bll.suanv(nv);
+           
+            bll.suaNhanVien(nv);
             JOptionPane.showMessageDialog(null, "Sửa thông tin thành công!! \n");
         }
         catch(Exception ex)
