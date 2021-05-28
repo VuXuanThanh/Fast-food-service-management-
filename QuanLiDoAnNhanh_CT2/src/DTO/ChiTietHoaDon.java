@@ -19,14 +19,16 @@ import java.util.logging.Logger;
 public class ChiTietHoaDon {
     private String maHD;
     private int maMon, soLuong;
+    private double gia;
 
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(String maHD, int maMon, int soLuong) {
+    public ChiTietHoaDon(String maHD, int maMon, int soLuong,double gia) {
         this.maHD = maHD;
         this.maMon = maMon;
         this.soLuong = soLuong;
+        this.gia = gia;
     }
 
     public String getMaHD() {
@@ -68,6 +70,15 @@ public class ChiTietHoaDon {
     public String getDonViTinh(){
         return getDoAn().getDonViTinh();
     }
+
+    public double getGia() {
+        return gia;
+    }
+
+    public void setGia(double gia) {
+        this.gia = gia;
+    }
+    
     
     public double thanhTien(){
         double gia = getDoAn().getGia();

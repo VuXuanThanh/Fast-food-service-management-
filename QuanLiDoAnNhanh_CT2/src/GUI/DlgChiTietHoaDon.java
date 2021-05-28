@@ -601,7 +601,8 @@ public class DlgChiTietHoaDon extends javax.swing.JDialog {
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        this.setVisible(false);
+        new DlgHoaDon(null, true).setVisible(true);
     }//GEN-LAST:event_btnThoatActionPerformed
 
     /**

@@ -551,6 +551,24 @@ public class BLL {
    
 //   Phạm Trung Thế
 //    Các phương thức đặt đồ ăn
+    public ArrayList<NhanVien> showNhanVienTheoDK(String dK){
+        ArrayList<NhanVien> ds = new ArrayList<>();
+        ResultSet res = null;
+        String sql = "select * from nhanvien where "+dK+"";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                NhanVien item = new NhanVien( res.getString(1), res.getString(2),
+                        res.getString(3), res.getString(4),
+                        res.getDate(5).toString(), res.getString(6), res.getString(7));
+                ds.add(item);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return ds;
+    }
+    
     public ArrayList<KhachHang> showKhachHangTheoDK(String dK){
         ArrayList<KhachHang> ds = new ArrayList<>();
         ResultSet res = null;
@@ -558,8 +576,8 @@ public class BLL {
         res = dal.getResultSet(sql);
         try {
             while (res.next()) {
-                KhachHang item = new KhachHang(res.getString(1), 
-                        res.getString(2),res.getString(3));
+                KhachHang item = new KhachHang(res.getString(2), 
+                        res.getString(1),res.getString(3));
                 ds.add(item);
             }
         } catch (SQLException ex) {
@@ -575,7 +593,8 @@ public class BLL {
         res = dal.getResultSet(sql);
         try {
             while (res.next()) {
-                ChiTietHoaDon item = new ChiTietHoaDon(res.getString(1), res.getInt(2),res.getInt(3));
+                ChiTietHoaDon item = new ChiTietHoaDon(res.getString(1),
+                        res.getInt(2),res.getInt(3),res.getDouble(4));
                 ds.add(item);
             }
         } catch (SQLException ex) {
@@ -632,7 +651,7 @@ public class BLL {
         return ds;
     }
     
-    public int insertKhachHang(String hoTen, String soDT, String diaChi){
+    public int insertKhachHang(String soDT, String hoTen, String diaChi){
         String sql ="insert into khachhang values ('"+soDT+"', '"+hoTen+"', '"+diaChi+"')";
         int t = 0;
         try {
@@ -643,17 +662,20 @@ public class BLL {
         return t;
     }
     
-    public int getSoKhachHang (String soDT){
-        int d=0;
-        String sql = "select count(*) from khachhang where sodt ='" + soDT + "'";
+    public ArrayList<KhachHang> getSoKhachHang (String soDT){
+        ArrayList<KhachHang> ds = new ArrayList<>();
         ResultSet res = null;
+        String sql = "select * from khachhang where sodt ='" + soDT + "'";
         res = dal.getResultSet(sql);
         try {
-            d=res.getInt(1);
+            while (res.next()) {
+                KhachHang item = new KhachHang(res.getString(2), res.getString(1),res.getString(3));
+                ds.add(item);
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
-        return d;
+        return ds;
     }
     
     public int insertHoaDon(String maHD, String maNV, String ngayXuat, String thoiGian,String soDT){
@@ -668,9 +690,9 @@ public class BLL {
         return t;
     }
     
-    public void insertChiTietHoaDon(String maHD, int maMon, int soLuong){
+    public void insertChiTietHoaDon(String maHD, int maMon, int soLuong,double gia){
             String sql ="insert into chitiethoadon values ('"+maHD+"', "+maMon+", "
-                    +soLuong+")";
+                    +soLuong+","+gia+")";
         try {
             int t = 0;
             t = dal.getStatement().executeUpdate(sql);

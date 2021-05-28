@@ -134,7 +134,8 @@ public class frmMainNhanVien extends javax.swing.JFrame {
 
     private void mnuOrderDoAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuOrderDoAnMouseClicked
         // TODO add your handling code here:
-        new DlgQLPhieuNhap(this, true).setVisible(true);
+        new DlgDatDoAn(this, true).setVisible(true);
+//        new DlgQLPhieuNhap(this, true).setVisible(true);
     }//GEN-LAST:event_mnuOrderDoAnMouseClicked
 
     private void mnuDoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDoiMatKhauMouseClicked

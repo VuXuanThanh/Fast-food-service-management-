@@ -15,6 +15,7 @@ import DTO.DongHoHeThong;
 import DTO.HinhAnh;
 import DTO.HoaDon;
 import DTO.KhachHang;
+import DTO.NhanVien;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
@@ -42,7 +43,6 @@ public class DlgDatDoAn extends javax.swing.JDialog {
     ArrayList<DoAn> listDoAn = new ArrayList<>();
     ArrayList<ChiTietHoaDon> listCTHD = new ArrayList<>();;
     DecimalFormat dingDangTien = new DecimalFormat("###,###,### VNĐ");
-    String maNV;
     long khachTra;
     long phiGiaoHang;
     /**
@@ -142,8 +142,12 @@ public class DlgDatDoAn extends javax.swing.JDialog {
     }
     
     private void nhanVien(){ 
-        lblMaNV.setText("NV01");
-        lblHoTenNV.setText("Phạm Trung Thế");
+        String tenTKDN = frmDangNhap.tenTK;
+        NhanVien nhanVien = new NhanVien();
+        String dK = "tentaikhoan = '"+tenTKDN+"'";
+        nhanVien = bll.showNhanVienTheoDK(dK).get(0);
+        lblMaNV.setText(nhanVien.getMaNhanVien());
+        lblHoTenNV.setText(nhanVien.getHoTen());
     }
     
     private void taoHoaDon(){
@@ -207,7 +211,9 @@ public class DlgDatDoAn extends javax.swing.JDialog {
             }
         }
         if(kT==0){
-            listCTHD.add(new ChiTietHoaDon(maHD, maMon, soLuong));
+            ChiTietHoaDon cTHD = new ChiTietHoaDon();
+            cTHD.setMaMon(maMon);
+            listCTHD.add(new ChiTietHoaDon(maHD, maMon, soLuong,cTHD.getDoAn().getGia()));
         }
         
     }
@@ -237,6 +243,7 @@ public class DlgDatDoAn extends javax.swing.JDialog {
     private void themHDVaoCSDL() {
         try{
             String maHD = lblMaHoaDon.getText();
+            String maNV = lblMaNV.getText();
             DongHoHeThong dH = new DongHoHeThong(lblNgay.getText());
             String ngayXuat = dH.getNgayVaoCSDL();
             String thoiGian = lblGio.getText();
@@ -252,22 +259,31 @@ public class DlgDatDoAn extends javax.swing.JDialog {
                                 "Thông tin khách hàng không được để trống");
                     }
                     soDT = soDTKH;
-                    if(bll.getSoKhachHang(soDTKH)==0){
-                        kT = bll.insertKhachHang(hoTenKH, soDTKH, diaChiKH);
+                    if(soDT.length() > 10){
+                        throw new Exception("Số điện thoại khách hàng không được quá 10 số");
+                    }
+                    if(!soDT.matches("\\d+")){
+                        throw new Exception("Số điện thoại khách hàng phải là số");
+                    }
+                    if(bll.getSoKhachHang(soDTKH).size() == 0){
+                        kT = bll.insertKhachHang(soDTKH, hoTenKH, diaChiKH);
                     }
             }
             kT = bll.insertHoaDon(maHD, maNV, ngayXuat, thoiGian, soDT);
             if(kT==1){
                 listCTHD.forEach((t) -> {
                     bll.insertChiTietHoaDon(t.getMaHD(), t.getMaMon(),
-                            t.getSoLuong());
+                            t.getSoLuong(),t.getGia());
                 });
+                JOptionPane.showMessageDialog(null, "Hóa đơn đã được tạo",
+                        "Thành công", JOptionPane.INFORMATION_MESSAGE);
+                radKhachLe.setSelected(true);
+                hienThiMacDinh();
             }
-            JOptionPane.showMessageDialog(null, "Hóa đơn đã được tạo",
-                    "Thành công", JOptionPane.INFORMATION_MESSAGE);
-            radKhachLe.setSelected(true);
-            hienThiMacDinh();
         }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(),
+            "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex.getMessage(),
             "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
@@ -394,7 +410,7 @@ public class DlgDatDoAn extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel8.setLayout(new java.awt.GridLayout());
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0));
 
         pnlKH.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlKH.setLayout(new java.awt.GridLayout(3, 0));
@@ -1322,12 +1338,13 @@ public class DlgDatDoAn extends javax.swing.JDialog {
     private void tblDoAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoAnMouseClicked
         // TODO add your handling code here:
         try{
+            lblThongBao.setText("");
+            int dong = tblDoAn.getSelectedRow();
+            
             btnThem.setEnabled(true);
             btnSua.setEnabled(false);
             btnXoa.setEnabled(false);
-            lblThongBao.setText("");
             
-            int dong = tblDoAn.getSelectedRow();
             DoAn doAn = new DoAn();
             doAn = listDoAn.get(dong);
             hienThongTinDoAn(doAn);
@@ -1538,7 +1555,8 @@ public class DlgDatDoAn extends javax.swing.JDialog {
                 "Bạn có chắc muốn thoát. Dữ liệu đang nhập sẽ không được lưu",
                 "Vui lòng xác nhận", JOptionPane.YES_NO_OPTION);
         if(kt == JOptionPane.YES_OPTION){
-            System.exit(0);
+            this.setVisible(false);
+//            new .setVisible(true);
         }
     }//GEN-LAST:event_btnThoatActionPerformed
 

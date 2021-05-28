@@ -412,7 +412,8 @@ public class DlgHoaDon extends javax.swing.JDialog {
                 throw new Exception("Bạn chưa chọn dòng");
             }else{
                 maHD = listHD.get(dong).getMaHD();
-                new DlgChiTietHoaDon(null, true).show();
+                this.setVisible(false);
+                new DlgChiTietHoaDon(null, true).setVisible(true);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -425,7 +426,8 @@ public class DlgHoaDon extends javax.swing.JDialog {
                 "Bạn có chắc muốn thoát.",
                 "Vui lòng xác nhận", JOptionPane.YES_NO_OPTION);
         if(kt == JOptionPane.YES_OPTION){
-            System.exit(0);
+            this.setVisible(false);
+//            new .setVisible(true);
         }
     }//GEN-LAST:event_btnTrangChuActionPerformed
 
