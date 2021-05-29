@@ -59,7 +59,7 @@ public class CustomTable_HoaDon extends AbstractTableModel
             
             case 1: return dsThiSinh.get(rowIndex).getMaNV();
             //Cột b
-            case 2: return dsThiSinh.get(rowIndex).getSoDT();
+            case 2: return dsThiSinh.get(rowIndex).getKhachHang().getSoDT();
             //cột c
             case 3: return dsThiSinh.get(rowIndex).getNgayXuat();
             //cột kq

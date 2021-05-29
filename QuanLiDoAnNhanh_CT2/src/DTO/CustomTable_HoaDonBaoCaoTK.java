@@ -9,11 +9,10 @@ import javax.swing.table.AbstractTableModel;
 public class CustomTable_HoaDonBaoCaoTK extends AbstractTableModel
 {
     //Khai báo xâu chứa tiêu đề của bảng.
-    private String name[]={"Mã hóa đơn","Ngày xuất","Tổng tiền"
-   };
+    //Khai báo xâu chứa tiêu đề của bảng.
+    private String name[]={"Mã hóa đơn","Mã nhân viên","Ngày xuất","Tổng tiền"};
     //Khai báo lớp Chứa kiểu dữ liệu của từng trường tương ứng.
-    private Class classes[]={String.class,Date.class,Double.class,
-    };
+    private Class classes[]={String.class,Integer.class,String.class,String.class,String.class,Double.class};
     //Tạo một đối tượng arrayList có tên listThiSinh.
     ArrayList<HoaDon> dsThiSinh=new ArrayList<>();
 
@@ -37,16 +36,21 @@ public class CustomTable_HoaDonBaoCaoTK extends AbstractTableModel
     //Đưa thông tin của phần tử trong arrayList lên jTable
     public Object getValueAt(int rowIndex,int columnIndex)
     {
-        
         switch(columnIndex)
         {
             //Cột số a
             case 0: return dsThiSinh.get(rowIndex).getMaHD();
+            
+            case 1: return dsThiSinh.get(rowIndex).getMaNV();
             //Cột b
-            case 1: return dsThiSinh.get(rowIndex).getNgayXuat();
+          
             //cột c
-            case 2: return dsThiSinh.get(rowIndex).getTongTien();
-            //cột kq      
+            case 2: return dsThiSinh.get(rowIndex).getNgayXuat();
+            //cột kq
+            
+            
+            case 3: return dsThiSinh.get(rowIndex).getTongTien();
+            
             default :return null;
         }
     }

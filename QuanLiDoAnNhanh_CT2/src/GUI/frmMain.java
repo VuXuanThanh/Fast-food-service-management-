@@ -55,7 +55,6 @@ public class frmMain extends javax.swing.JFrame {
         itemQLNhanVien = new javax.swing.JRadioButtonMenuItem();
         itemQLNguyenLieu = new javax.swing.JRadioButtonMenuItem();
         itemQLDanhMuc = new javax.swing.JRadioButtonMenuItem();
-        itemQLTaiKhoan = new javax.swing.JRadioButtonMenuItem();
         mnuNhapKhoNguyenLieu = new javax.swing.JMenu();
         mnuBaoCaoThongKe = new javax.swing.JMenu();
 
@@ -121,6 +120,11 @@ public class frmMain extends javax.swing.JFrame {
                 itemQLNhanVienMouseClicked(evt);
             }
         });
+        itemQLNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemQLNhanVienActionPerformed(evt);
+            }
+        });
         mnuQuanLi.add(itemQLNhanVien);
 
         itemQLNguyenLieu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
@@ -138,13 +142,12 @@ public class frmMain extends javax.swing.JFrame {
         itemQLDanhMuc.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         itemQLDanhMuc.setSelected(true);
         itemQLDanhMuc.setText("Quản lí danh mục");
+        itemQLDanhMuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemQLDanhMucActionPerformed(evt);
+            }
+        });
         mnuQuanLi.add(itemQLDanhMuc);
-
-        itemQLTaiKhoan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        itemQLTaiKhoan.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        itemQLTaiKhoan.setSelected(true);
-        itemQLTaiKhoan.setText("Quản lí tài khoản");
-        mnuQuanLi.add(itemQLTaiKhoan);
 
         mainMnu.add(mnuQuanLi);
 
@@ -221,6 +224,17 @@ public class frmMain extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_itemQLNhanVienMouseClicked
 
+    private void itemQLNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQLNhanVienActionPerformed
+        // TODO add your handling code here:
+        new frmQuanLyNhanVien().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_itemQLNhanVienActionPerformed
+
+    private void itemQLDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQLDanhMucActionPerformed
+        // TODO add your handling code here:
+        new DlgQLDanhMuc(this, true).setVisible(true);
+    }//GEN-LAST:event_itemQLDanhMucActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,7 +276,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem itemQLNguyenLieu;
     private javax.swing.JRadioButtonMenuItem itemQLNhaCungCap;
     private javax.swing.JRadioButtonMenuItem itemQLNhanVien;
-    private javax.swing.JRadioButtonMenuItem itemQLTaiKhoan;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar mainMnu;
     private javax.swing.JMenu mnuBaoCaoThongKe;

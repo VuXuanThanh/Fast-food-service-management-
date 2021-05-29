@@ -57,7 +57,7 @@ public class frmQuanLyNhanVien extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblQLNV = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Quản lý nhân viên");
         setResizable(false);
 

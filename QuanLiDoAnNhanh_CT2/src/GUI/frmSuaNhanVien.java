@@ -67,7 +67,7 @@ public class frmSuaNhanVien extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         rdbNu = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Sửa thông tin nhân viên");
         setResizable(false);
 

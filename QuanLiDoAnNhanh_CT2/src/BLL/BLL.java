@@ -818,4 +818,50 @@ public class BLL {
          }
         return ds;
     }
+    // uppdate form báo cáo thống kê
+     public ArrayList<HoaDon> showHoaDonTheoNgay(String ngayBatDau, String ngayKetThuc){
+        ArrayList<HoaDon> ds = new ArrayList<>();
+        ResultSet res = null;
+        String sql = "select * from hoadon where "
+                + " ngayxuat >= date('" + ngayBatDau + "') and ngayxuat <= date('" + ngayKetThuc + "') ";
+        res = dal.getResultSet(sql);
+        try {
+            while (res.next()) {
+                HoaDon item = new HoaDon(res.getString(1), 
+                        res.getString(2),res.getDate(3), res.getTime(4),
+                        res.getString(5));
+                ds.add(item);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        return ds;
+    }
+     
+    public ArrayList<HoaDon> showHoaDonTheoThangNam(int thangHienTai) throws SQLException {
+        ArrayList<HoaDon> list = new ArrayList<>();
+        String sql = "select * from hoadon "
+                + " where month(ngayxuat) = " + thangHienTai + "";
+        ResultSet res = dal.getResultSet(sql);
+        while (res.next()) {
+            HoaDon item = new HoaDon(res.getString(1),
+                    res.getString(2), res.getDate(3), res.getTime(4),
+                    res.getString(5));
+            list.add(item);
+        }
+        return list;
+    }
+     public ArrayList<HoaDon> showHoaDonTheoThangNam(int namHT, boolean flag) throws SQLException {
+        ArrayList<HoaDon> list = new ArrayList<>();
+        String sql = "select * from hoadon "
+                + " where year(ngayxuat) = " + namHT;
+        ResultSet res = dal.getResultSet(sql);
+        while (res.next()) {
+            HoaDon item = new HoaDon(res.getString(1),
+                    res.getString(2), res.getDate(3), res.getTime(4),
+                    res.getString(5));
+            list.add(item);
+        }
+        return list;
+    }
 }

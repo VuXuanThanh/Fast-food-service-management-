@@ -21,7 +21,7 @@ public class HoaDon {
     private String maNV;
     private Date ngayXuat;
     private Time thoiGian;
-    private String soDT;
+    private KhachHang khachHang;
     private double tongTien;
     
     public HoaDon() {
@@ -33,11 +33,11 @@ public class HoaDon {
         this.ngayXuat = ngayXuat;
     }
 
-    public HoaDon(String maHD, String maNV, Date ngayXuat, String soDT) {
+    public HoaDon(String maHD, String maNV, Date ngayXuat, KhachHang khachHang) {
         this.maHD = maHD;
         this.maNV = maNV;
         this.ngayXuat = ngayXuat;
-        this.soDT = soDT;
+        this.khachHang = khachHang;
     }
 
     public HoaDon(String maHD, Date ngayXuat, double tongTien) {
@@ -45,15 +45,15 @@ public class HoaDon {
         this.ngayXuat = ngayXuat;
         this.tongTien = tongTien;
     }
-    
 
-    public HoaDon(String maHD, String maNV, Date ngayXuat, Time thoiGian, String soDT) {
+    public HoaDon(String maHD, String maNV, Date ngayXuat, Time thoiGian, String khachHang) {
         this.maHD = maHD;
         this.maNV = maNV;
         this.ngayXuat = ngayXuat;
         this.thoiGian = thoiGian;
         BLL bll = new BLL();
-        this.soDT= soDT;
+        String dK = "sodt = '"+ khachHang+"'";
+        this.khachHang = bll.showKhachHangTheoDK(dK).get(0);
     }
     
     public void setMaHD(int so) {
@@ -98,15 +98,14 @@ public class HoaDon {
         this.thoiGian = thoiGian;
     }
 
-    public String getSoDT() {
-        return soDT;
+    public KhachHang getKhachHang() {
+        return khachHang;
     }
 
-    public void setSoDT(String soDT) {
-        this.soDT = soDT;
+    public void setKhachHang(KhachHang khachHang) {
+        this.khachHang = khachHang;
     }
 
-    
     public double getTongTien() {
         tongTien =0;
         BLL bll = new BLL();
@@ -115,12 +114,14 @@ public class HoaDon {
         listCTHD.forEach((t) -> {
             tongTien+= (t.getSoLuong()*t.getDoAn().getGia());
         });
-        if(!soDT.equalsIgnoreCase("Khách lẻ")){
+        if(!khachHang.soDT.equalsIgnoreCase("Khách lẻ")){
             tongTien+= 5000;
         }
         return tongTien;
     }
-     public Date getNgayXuat1() {
+    public Date returnNgayXuat() {
+        
         return ngayXuat;
+        
     }
 }

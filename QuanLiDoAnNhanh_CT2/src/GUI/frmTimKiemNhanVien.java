@@ -39,7 +39,7 @@ public class frmTimKiemNhanVien extends javax.swing.JFrame {
         btnOK = new javax.swing.JButton();
         btnHuyBo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Tìm kiếm nhân viên");
         setResizable(false);
 

@@ -198,7 +198,7 @@ public class DlgQLDanhMuc extends javax.swing.JDialog {
     private void btThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThoatActionPerformed
         int check = JOptionPane.showConfirmDialog(this, "Chắc chắn muốn thoát?", "Xác nhận thoát", JOptionPane.YES_NO_OPTION);
         if (check == JOptionPane.YES_OPTION) {
-            System.exit(0);
+           this.setVisible(false);
         }
     }//GEN-LAST:event_btThoatActionPerformed
 

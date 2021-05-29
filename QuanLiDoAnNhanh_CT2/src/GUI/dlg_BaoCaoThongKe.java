@@ -6,6 +6,7 @@
 package GUI;
 
 import BLL.BLL;
+import DTO.CustomTable_HoaDon;
 import DTO.CustomTable_HoaDonBaoCaoTK;
 import DTO.CustomTable_PhieuNhapBaoCaoTK;
 import DTO.HoaDon;
@@ -28,10 +29,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -68,24 +68,14 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
     }
 
     public double thongKeHoaDon(String ngayBatDau, String ngayKetThuc) {
-        try {
-            list = bll.showDSCTHoaDon(ngayBatDau, ngayKetThuc);
-            ArrayList<HoaDon> listHD = new ArrayList<>();
-            for (HoaDon hoaDon : list) {
-                double tongTien = hoaDon.getTongTien();
-                HoaDon itemHD = new HoaDon(hoaDon.getMaHD(), hoaDon.getNgayXuat1(), tongTien);
-                listHD.add(itemHD);
-            }
-            tblDSHoaDon.setModel(new CustomTable_HoaDonBaoCaoTK(listHD));
-            double sumHD = 0;
-            for (HoaDon hoaDon : list) {
-                sumHD += hoaDon.getTongTien();
-            }
-            return sumHD;
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Lỗi truy vấn CSDL" + ex.getMessage());
-            return 0;
+        list= bll.showHoaDonTheoNgay(ngayBatDau, ngayKetThuc);
+        tblDSHoaDon.setModel(new CustomTable_HoaDonBaoCaoTK(list));
+        double sumHD = 0;
+        for (HoaDon hoaDon : list) {
+            sumHD += hoaDon.getTongTien();
         }
+        return sumHD;
+       
     }
 
     public double thongKePhieuNhap(String ngayBatDau, String ngayKetThuc) {
@@ -105,7 +95,7 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
 
     public double thongKeHoaDon(int thangHT) {
         try {
-            list = bll.showDSCTHoaDon(thangHT);
+            list = bll.showHoaDonTheoThangNam(thangHT);
             tblDSHoaDon.setModel(new CustomTable_HoaDonBaoCaoTK(list));
             double sumHD = 0;
             for (HoaDon hoaDon : list) {
@@ -135,7 +125,7 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
 
     public double thongKeHoaDon(int namHT, boolean flag) {
         try {
-            list = bll.showDSCTHoaDon(namHT, flag);
+            list = bll.showHoaDonTheoThangNam(namHT, flag);
             tblDSHoaDon.setModel(new CustomTable_HoaDonBaoCaoTK(list));
             double sumHD = 0;
             for (HoaDon hoaDon : list) {
@@ -147,7 +137,6 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
             return 0;
         }
     }
-
     public double thongKePhieuNhap(int namHT, boolean flag) {
         try {
             double sumPN = 0;
@@ -162,12 +151,10 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
             return 0;
         }
     }
-
     public void resetText() {
         txtNgayBatDau.setText("");
         txtNgayKetThuc.setText("");
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -281,6 +268,11 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
 
         btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Log-Out-icon.png"))); // NOI18N
         btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -567,6 +559,11 @@ public class dlg_BaoCaoThongKe extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnThongKeActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     /**
      * @param args the command line arguments
