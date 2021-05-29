@@ -26,7 +26,8 @@ public class frmQuanLyNhanVien extends javax.swing.JFrame {
     
      BLL bll = new  BLL();
      
-    public  ArrayList<NhanVien> list = new ArrayList<>();
+    //public  ArrayList<NhanVien> list = new ArrayList<>();
+    public static  ArrayList<NhanVien> list = new ArrayList<>();
     public static NhanVien NVsua = new NhanVien();
     int selectedRow = 0;
     public frmQuanLyNhanVien() {
@@ -199,10 +200,10 @@ public class frmQuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        list = bll.bangNhanVien();
+        
         if (tblQLNV.getSelectedRow() >= 0)
         {
-            NhanVien nv = bll.bangNhanVien().get(tblQLNV.getSelectedRow());
+            NhanVien nv = list.get(tblQLNV.getSelectedRow());
             int k = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn xóa nhân viên này không?", "Thông báo", JOptionPane.YES_NO_OPTION);
             if (k == JOptionPane.YES_OPTION)
             {
@@ -214,7 +215,8 @@ public class frmQuanLyNhanVien extends javax.swing.JFrame {
                 }
 
                 list.remove(tblQLNV.getSelectedRow());
-                tblQLNV.setModel(new CustomTableQLNV(list));
+                //tblQLNV.setModel(new CustomTableQLNV(list));
+                loadTable();
                 JOptionPane.showMessageDialog(null, "Xóa nhân viên thành công!\n");
             }
             else{
@@ -224,7 +226,7 @@ public class frmQuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblQLNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLNVMouseClicked
-        list = bll.bangNhanVien();
+        list = bll.showNV();
         selectedRow = tblQLNV.getSelectedRow();
         NVsua = list.get(selectedRow);
     }//GEN-LAST:event_tblQLNVMouseClicked
@@ -236,7 +238,6 @@ public class frmQuanLyNhanVien extends javax.swing.JFrame {
     public void loadTable()
     {
         list = bll.showNV();
-        
         tblQLNV.setModel(new CustomTableQLNV(list));
     }
     /**

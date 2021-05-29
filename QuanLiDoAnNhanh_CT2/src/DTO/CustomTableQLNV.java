@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  * @author nguye
  */
 public class CustomTableQLNV extends AbstractTableModel{
-    private String name[] = {"Mã nhân viên", "Tên nhân viên", "Giới tính", "Số CMND", "Ngày sinh", "Địa chỉ","Ten tai khoan", "Số ĐT"};
+    private String name[] = {"Mã nhân viên", "Tên nhân viên", "Giới tính", "Số CMND", "Ngày sinh", "Địa chỉ","Tên tài khoản", "Số ĐT"};
     private Class classes[] = {String.class, String.class, String.class, String.class, String.class, String.class,String.class, String.class};
     
     ArrayList<NhanVien> listNV = new ArrayList<NhanVien>();
