@@ -18,4 +18,9 @@ public class KhachHang extends Nguoi{
         super(hoTen, soDT, diaChi);
     }
 
+    public KhachHang(String soDT) {
+        super(soDT);
+    }
+
+    
 }

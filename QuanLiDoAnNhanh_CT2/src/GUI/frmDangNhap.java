@@ -196,7 +196,7 @@ public class frmDangNhap extends javax.swing.JFrame {
 
             tenTKDN = "Xin chào " + quyen.getTenTaiKhoan();
             tenTK = quyen.getTenTaiKhoan();
-
+            System.out.println(tenTK);
             //Tuan Thanh sua quyen lai = 0,  0 la admin;
             if (quyen.getQuyen() == 0) {
 

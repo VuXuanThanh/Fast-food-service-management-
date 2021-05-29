@@ -31,9 +31,9 @@ public class DAL {
     Statement sta = null;
     ResultSet res = null;
 
-    String url = "jdbc:derby://localhost:1527/QLDoAN";
-    String user = "thanh";
-    String pass = "123456";
+    String url = "jdbc:derby://localhost:1527/QuanLiDoAn";
+    String user = "THANH";
+    String pass = "123";
 
     public DAL() {
         try {

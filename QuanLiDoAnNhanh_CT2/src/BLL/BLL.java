@@ -352,6 +352,7 @@ public class BLL {
         return list;
     }
 
+    
     public ArrayList<PhieuNhap> showDSCTPhieuNhap(String ngayBatDau, String ngayKetThuc) throws SQLException {
         ArrayList<PhieuNhap> list = new ArrayList<>();
         String sql = "select phieunhap.sophieu, ngaynhap, sum(slnhap*dgnhap) as tongtien "
@@ -367,6 +368,20 @@ public class BLL {
         return list;
     }
 
+    // cap nhattheo code 
+       public ArrayList<PhieuNhap> showCTHD1(String ngayBatDau, String ngayKetThuc) throws SQLException {
+        ArrayList<PhieuNhap> list = new ArrayList<>();
+        String sql = "select mahd, manv, ngayxuat, sodt"
+                + "where ngaynhap >= date('" + ngayBatDau + "') and ngaynhap <='" + ngayKetThuc + "' ";
+//                + "group by phieunhap.SOPHIEU, ngaynhap";
+        ResultSet res = dal.getResultSet(sql);
+        while (res.next()) {
+            PhieuNhap pn = new PhieuNhap(res.getString(1), res.getDate(2), res.getDouble(3));
+            list.add(pn);
+        }
+        return list;
+    }
+    //
     // 
     public ArrayList<PhieuNhap> showDSCTPhieuNhap(int thangHienTai) throws SQLException {
         ArrayList<PhieuNhap> list = new ArrayList<>();

@@ -15,6 +15,11 @@ public class Nguoi {
     public Nguoi() {
     }
 
+    public Nguoi(String soDT) {
+        this.soDT = soDT;
+    }
+
+    
     public Nguoi(String hoTen, String soDT, String diaChi) {
         this.hoTen = hoTen;
         this.soDT = soDT;

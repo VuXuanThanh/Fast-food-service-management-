@@ -49,7 +49,7 @@ public class DlgChiTietHoaDon extends javax.swing.JDialog {
         String tenNV = bll.getTenNV(hoaDon.getMaNV());
         lblHoTenNV.setText(tenNV);
         
-        String kH = hoaDon.getKhachHang().getSoDT();
+        String kH = hoaDon.getSoDT();
         if(kH.equalsIgnoreCase("Khách lẻ")){
             pnlKhachLe.setVisible(true);
             pnlTTKhachHang.setVisible(false);
